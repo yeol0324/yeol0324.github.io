@@ -1,1 +1,0 @@
-# yeol0324.github.io
