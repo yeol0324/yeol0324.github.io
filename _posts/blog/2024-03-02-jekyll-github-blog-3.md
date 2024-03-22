@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "jekyll github blog 커스텀하기"
+title: "github blog 만들기 - 1 블로그 커스텀하기 (1)"
 date: 2024-03-02 10:06:52 +0900
 categories: blog
 tags: jekyll blog github-page
