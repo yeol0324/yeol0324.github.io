@@ -105,5 +105,6 @@ https://sighingnow.github.io/jekyll-gitbook/
 ```
 bundle exec jekyll serve --livereload
 ```
+다음글 : [태그 모음 추가하기](https://yeol0324.github.io/blog/jekyll-github-blog-3/)
 
 참고 https://jekyllrb.com/docs/posts/
