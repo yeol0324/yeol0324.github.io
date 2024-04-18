@@ -306,3 +306,62 @@
     }
   }
 }
+.pagination {
+  @include flexbox(between, center);
+  .button {
+    width: 300px;
+    background: #f8f9fa;
+    padding: 10px 0;
+    * {
+      cursor: pointer;
+    }
+    span {
+      font-size: 12px;
+    }
+    a {
+      font-size: 18px;
+      font-weight: bold;
+      max-width: 220px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin: 10px;
+      color: #fee86f;
+      border: 1px solid #fee86f;
+      border-radius: 100px;
+      transition: 0.4s;
+      @include flexbox(center, center);
+    }
+    &.pagination-prev {
+      @include flexbox(start, center);
+      .icon {
+        transform: rotate(180deg);
+      }
+      .wrap {
+        @include column-flexbox(center, start);
+      }
+    }
+    &.pagination-next {
+      @include flexbox(end, center);
+      .wrap {
+        @include column-flexbox(center, end);
+      }
+    }
+    &:hover {
+      &.pagination-prev {
+        .icon {
+          transform: rotate(180deg) translateX(4px);
+        }
+      }
+      &.pagination-next {
+        .icon {
+          transform: translateX(4px);
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "jekyll github blog 커스텀하기 - 2"
+title: "jekyll github blog 커스텀하기 [2]"
 summary: post에 toc 추가하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog

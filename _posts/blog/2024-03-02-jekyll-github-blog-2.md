@@ -62,7 +62,9 @@ gem install github-pages
 터미널에서 다음을 입력해 줍니다
 jekyll new ./{폴더명}
 저는 블로그를 만들 폴더에서 진행하기떄문에 jekyll new ./ 로 진행해주었습니다.
-[](/assets/images/2024-03-02-jekyll-github-blog-2/03.png)
+
+![](/assets/images/2024-03-02-jekyll-github-blog-2/03.png)
+
 파일을 정상적으로 비우고 진행을 하면 캡처본처럼 기본 테마가 설치 됩니다.
 
 {{파일 설명}}
@@ -105,6 +107,5 @@ https://sighingnow.github.io/jekyll-gitbook/
 ```
 bundle exec jekyll serve --livereload
 ```
-다음글 : [태그 모음 추가하기](https://yeol0324.github.io/blog/jekyll-github-blog-3/)
 
 참고 https://jekyllrb.com/docs/posts/

@@ -51,8 +51,5 @@ vscode로 진행할 떄
 
 다음은 jekyll 셋팅으로 돌아오겠습니다.
 
-<!-- 이전글 : [jekyll 셋팅하기](https://yeol0324.github.io/blog/jekyll-github-blog-2/) -->
-
-다음글 : [jekyll 셋팅하기](https://yeol0324.github.io/blog/jekyll-github-blog-2/)
 
 참고 : <https://docs.github.com/en/pages/quickstart>
