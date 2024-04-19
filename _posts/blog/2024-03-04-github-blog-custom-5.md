@@ -19,3 +19,7 @@ title: Category
 ---
 
 최상단에 이렇게 써줄 거예요!
+하나씩 살펴보면
+layout : page 라는 레이아웃을 가짐
+permalink :  baseUrl/categories/ 를 접속 하면 나오는 페이지
+title : 해당 페이지 타이틀 ( 페이지에 접속하면 상단 탭에 표시되는 이름 ) 입니다

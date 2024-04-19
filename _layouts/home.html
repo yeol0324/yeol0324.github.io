@@ -14,23 +14,27 @@ layout: default
     <ul class="post-list">
       {%- for post in site.posts -%}
       <li>
-        <!-- TODO: 날짜별로 묶을지 -->
-        <!-- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-
-        <span class="post-meta">{{ post.date | date: date_format }}</span> -->
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          <h3>{{ post.title | escape }}</h3>
+          <div class="post-content">
+            <p>
+              {{post.content| markdownify | strip_html | truncate: 280 | escape}}
+            </p>
+          </div>
+          <div class="tag-list">
+          {%- for tag in post.tags -%}
+            <h5>
+              #{{ tag }}
+            </h5>
+          {%- endfor -%}
+          </div>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </a>
       </li>
       {%- endfor -%}
     </ul>
-
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
   {%- endif -%}
 
 </div>

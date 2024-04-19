@@ -128,3 +128,4 @@ _layout.scss 에 디자인을 적용해 주었습니다.
 위에서 사용한 include가 뭔지 궁금하다면? [scss 사용하기](https://yeol0324.github.io/blog/scss-use/)
 
 [참고 문서](https://talk.jekyllrb.com/t/how-to-link-to-next-and-previous-posts-for-same-blog-category/629)
+[참고 문서](https://jekyllrb.com/docs/variables/)
