@@ -140,4 +140,6 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
 ```
 {% endraw %}
 
+포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다 .
+
 https://jekyllrb-ko.github.io/docs/structure/

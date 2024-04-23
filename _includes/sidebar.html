@@ -1,30 +1,33 @@
 <sidebar class="site-sidebar">
-  <h1>profile</h1>
-  <h1>HOME</h1>
-  <a href="/categories/">CATEGORIES</a>
-  {% for category in site.categories %}
-  <div>{{category}}</div>
-  {% endfor %}
-
-  <h1>TAGS</h1>
-  <ul class="tag-cloud">
-    {% for tag in site.tags %}
-    <!-- tag_name 변수 지정: 태그명은 소문자화(slugize) 한다 -->
-    {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
-    <!-- font_size 변수 지정: 태그숫자/전체태그숫자 * 100 + 50 -->
-    <!-- {% capture font_size %}{{tag|last|size| times:100 | divided_by:site.tags.size | plus: 50 }}%{% endcapture %} -->
-    <!-- tag_size 변수 지정-->
-    <!-- {% capture tag_size %}{{tag|last|size}}{% endcapture %} -->
-    <li>
-      <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
-        {{tag_name}}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div>
+    <h1>profile</h1>
+    <a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+  </div>
+  <div class="category-wrap">
+    <h1>CATEGORIES</h1>
+    <ul>
+    {% for category in site.categories %}
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      <li>{{ category_name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="tag-wrap">
+    <h1>TAGS</h1>
+    <ul>
+      {% for tag in site.tags %}
+      {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
+      <li>
+        <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+          {{tag_name}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </sidebar>
 
-<script>
+<!-- <script>
   $(document).ready(function init() {
     var url = window.location.href;
     var req = /#([^\s]+)$/.exec(url);
@@ -40,4 +43,4 @@
     $(".archive-group").hide();
     $(selector).show();
   }
-</script>
+</script> -->

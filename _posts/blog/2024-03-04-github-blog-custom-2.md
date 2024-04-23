@@ -33,10 +33,7 @@ defaults:
   path: ""
   values:
   toc: true
-
 \_layouts/post.html
 {% raw %}{{ content | toc }}{% endraw %}
 
 참고 https://github.com/toshimaru/jekyll-toc
-
-TODO: toc 꾸미기
