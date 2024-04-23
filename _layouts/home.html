@@ -23,7 +23,7 @@ layout: default
           </div>
           <div class="tag-list">
           {%- for tag in post.tags -%}
-            <h5>
+            <h5 class="tag-{{tag}}">
               #{{ tag }}
             </h5>
           {%- endfor -%}

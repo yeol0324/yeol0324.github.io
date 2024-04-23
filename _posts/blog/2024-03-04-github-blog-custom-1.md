@@ -7,7 +7,7 @@ categories: blog
 tags: jekyll blog github-page
 ---
 
-jekyll github blog 커스텀하기 입니다. 지킬 깃헙 블로그 커스텀하기는 이전에 글을 썼었는데요. 계속 욕심도 생기고 하고 싶은 것들도 생겨서 디자인도 더욱 고도화할 겸 기록을 남겨두려고 합니다.
+jekyll github blog 커스텀하기 입니다. 지킬 깃헙 블로그 커스텀하기는 이전에 글을 썼었는데요. 계속 욕심도 생기고 하고 싶은 것들도 생겨서 디자인도 더욱 고도화할 겸 기록을 공유합니다.
 
 Pass the --livereload option to serve to automatically refresh the page with each change you make to the source files: bundle exec jekyll serve --livereload
 

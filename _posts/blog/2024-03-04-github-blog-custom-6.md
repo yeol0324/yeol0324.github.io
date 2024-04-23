@@ -7,14 +7,29 @@ categories: blog
 tags: jekyll blog github-page
 ---
 
-블로그에 home 레이아웃을 수정하고 aside 추가하는 작업을 해보겠습니다.
+블로그 home 디자인과 구성을 수정하고 sidebar 까지 추가해보겠습니다.
+
+# 디렉토리 구조
+
+먼저 jekyll 디렉토리 구조에 대해 간단히 알아보겠습니다.
+> <a href="{{base_path}}/jekyll/jekyll-use/">jekyll 사용하기</a>
+{% raw %}
+_layouts/
+
+- <code>default.html</code> 화면 템플릿 소스코드를 입력합니다. 
+- <code>*.html</code> 에 default.html 레이아웃을 상속받는 페이지 레이아웃을 만들 수 있습니다.
+
+_includes/
+- <code>*.html</code> {% include *.html %} 처럼 include 태그를 사용하여 렌더링할 수 있습니다.
+{% endraw %}
+
+
+# home 구성하기
 
 minia default 테마의 home 화면은 포스팅이 최신 날짜 순으로 제목이 쭉 나열이 되어있는 곳을 먼저 바꿔보겠습니다.
-제목만 나왔을 떄는 너무 허전한 느낌이라서 제목 아래에 컨텐츠 내용이 조금 보이고 아래 태그들이 달려있는 형식으로 잡았습니다.
+제목만 나왔을 떄는 너무 허전한 느낌이라서 제목 아래에 컨텐츠 내용이 미리보기 형식으로 보이고 아래 태그들이 달려있는 모양으로 구성을 했습니다.
 
-결과물 
-
-먼저 home.html 에서 post-list 안에 날짜 별로 묶여있는 부분을 지워주고 content와 태그들을 추가해주었습니다.
+먼저 _layouts/home.html 에서 post-list 안에 날짜 별로 묶여있는 부분을 지워주고 content와 태그들을 추가해주었습니다.
 ```html
 {% raw %}
 --- 제거
@@ -25,18 +40,18 @@ minia default 테마의 home 화면은 포스팅이 최신 날짜 순으로 제�
     <a class="post-link" href="{{ post.url | relative_url }}">
         <h3>
             {{ post.title | escape }}
-        <div class="post-content">
-            <p>
-            {{post.content| markdownify | strip_html | truncate: 280 | escape }}
-            </p>
-        </div>
-        <div class="tag-list">
-        {%- for tag in post.tags -%}
-            <h5>
-            #{{ tag }}
-            </h5>
-        {%- endfor -%}
-        </div>
+            <div class="post-content">
+                <p>
+                {{post.content| markdownify | strip_html | truncate: 280 | escape }}
+                </p>
+            </div>
+            <div class="tag-list">
+            {%- for tag in post.tags -%}
+                <h5>
+                #{{ tag }}
+                </h5>
+            {%- endfor -%}
+            </div>
         </h3>
         {%- if site.show_excerpts -%}
         {{ post.excerpt }}
@@ -56,12 +71,11 @@ post.content | markdownify | strip_html | truncate: 280 | escape
 <code>strip_html</code> 문자열에서 HTML 태그를 제거합니다.<br>
 <code>truncate</code> 인수로 전달된 문자 수만큼 문자열을 줄입니다.
 
-css 도 수정해줍니다. _layout.scss 최하단에 작성하였습니다.
+_layout.scss 최하단에 css 를 추가했습니다.
 ```scss
 /**
  * Home Layout
  */
-
 .post-list {
   margin-left: 0;
   list-style: none;
@@ -88,8 +102,9 @@ css 도 수정해줍니다. _layout.scss 최하단에 작성하였습니다.
       margin: 0;
       font-size: 16px;
       p {
+        color: #808080;
         margin: 0;
-        padding: 4px 8px;
+        padding: 4px 10px;
       }
     }
     .tag-list {
@@ -103,3 +118,26 @@ css 도 수정해줍니다. _layout.scss 최하단에 작성하였습니다.
   }
 }
 ```
+
+# sidebar 추가하기
+
+sidebar는 모든 페이지에서 항상 떠있도록 추가할 거예요. 블로그에서 그 글을 보다보면 어떤 카테고리들이 있는지 쭉 보고 싶었던 적이 많았던 것 같습니다. 카테고리 상세 페이지를 가게 되면 이전에 보던 글을 다시 찾기 어려웠던 기억이 있어서 저는 sidebar 에서 블로그에 카테고리를 쭉 보여주고, 그 아래에는 tag들을 볼 수 있도록 만들겠습니다.
+
+_includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이지에서 보이도록 하기 위해 default.html 에서 header 아래에 배치했습니다.
+
+{% raw %}
+```html
+ <body>
+    {%- include header.html -%}
+    {%- include sidebar.html -%} // 추가
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
+      </div>
+    </main>
+    {%- include footer.html -%}
+  </body>
+```
+{% endraw %}
+
+https://jekyllrb-ko.github.io/docs/structure/

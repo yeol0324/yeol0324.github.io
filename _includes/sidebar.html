@@ -1,41 +1,29 @@
 <sidebar class="site-sidebar">
-  <div>profile</div>
+  <h1>profile</h1>
   <h1>HOME</h1>
   <a href="/categories/">CATEGORIES</a>
+  {% for category in site.categories %}
+  <div>{{category}}</div>
+  {% endfor %}
+
   <h1>TAGS</h1>
   <ul class="tag-cloud">
     {% for tag in site.tags %}
-
     <!-- tag_name 변수 지정: 태그명은 소문자화(slugize) 한다 -->
     {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
     <!-- font_size 변수 지정: 태그숫자/전체태그숫자 * 100 + 50 -->
-    {% capture font_size %}{{tag|last|size| times:100 |
-    divided_by:site.tags.size | plus: 50 }}%{% endcapture %}
+    <!-- {% capture font_size %}{{tag|last|size| times:100 | divided_by:site.tags.size | plus: 50 }}%{% endcapture %} -->
     <!-- tag_size 변수 지정-->
-    {% capture tag_size %}{{tag|last|size}}{% endcapture %}
-
+    <!-- {% capture tag_size %}{{tag|last|size}}{% endcapture %} -->
     <li>
       <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
-        {{tag_name}} ({{tag_size}})
+        {{tag_name}}
       </a>
     </li>
-    <div class="archive-group" style="display: none" id="{{tag_name}}">
-      <h3 id="{{tag_name}}">{{ tag_name }}</h3>
-
-      {% for post in site.tags[tag_name] %}
-      <article class="archive-item">
-        <h4>
-          <!-- click 하여 show/hide 한다 -->
-          <a href="{{ root_url }}{{ post.url }}"> {{post.title}} </a>
-        </h4>
-      </article>
-      {% endfor %}
-    </div>
     {% endfor %}
   </ul>
 </sidebar>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
   $(document).ready(function init() {
     var url = window.location.href;
