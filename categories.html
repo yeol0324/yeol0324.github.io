@@ -9,7 +9,10 @@ toc: true
   {% for category in site.categories %}
   <div class="archive-group">
     {% capture category_name %}{{ category | first }}{% endcapture %}
-    <h1 class="category-head">{{ category_name }}</h1>
+    <h1 id="{{category_name}}"class="category-head">{{ category_name }}</h1>
+    <!-- <a href="#{{category_name}}" onclick="showTag('#{{category_name}}')">
+      {{category_name}} (0)
+    </a> -->
     {% for post in site.categories[category_name] %}
     <article class="archive-item">
       <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
@@ -20,7 +23,6 @@ toc: true
 </div>
 <ul class="tag-cloud">
   {% for tag in site.tags %}
-
   <!-- tag_name 변수 지정: 태그명은 소문자화(slugize) 한다 -->
   {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
   <!-- font_size 변수 지정: 태그숫자/전체태그숫자 * 100 + 50 -->
@@ -57,7 +59,7 @@ toc: true
   {% endfor %}
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
   $(document).ready(function init() {
     var url = window.location.href;
@@ -74,4 +76,4 @@ toc: true
     $(".archive-group").hide();
     $(selector).show();
   }
-</script>
+</script> -->

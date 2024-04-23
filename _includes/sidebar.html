@@ -1,19 +1,21 @@
 <sidebar class="site-sidebar">
-  <div>
-    <h1>profile</h1>
-    <a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+  <div class="profile-wrap">
+    <div class="profile-img">
+      <img src="/assets/profile.png" alt="">
+    </div>
+    <h1><a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
   </div>
   <div class="category-wrap">
-    <h1>CATEGORIES</h1>
+    <h2>CATEGORIES</h2>
     <ul>
     {% for category in site.categories %}
       {% capture category_name %}{{ category | first }}{% endcapture %}
-      <li>{{ category_name }}</li>
+      <li><a href="{{base_path}}/categories/#{{category_name}}">{{ category_name }}</a></li>
       {% endfor %}
     </ul>
   </div>
   <div class="tag-wrap">
-    <h1>TAGS</h1>
+    <h2>TAGS</h2>
     <ul>
       {% for tag in site.tags %}
       {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}

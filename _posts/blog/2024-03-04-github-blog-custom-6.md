@@ -127,8 +127,9 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
 
 {% raw %}
 ```html
+<!-- default.html -->
  <body>
-    {%- include header.html -%}
+   {%- include header.html -%}
     {%- include sidebar.html -%} // 추가
     <main class="page-content" aria-label="Content">
       <div class="wrapper">
@@ -137,9 +138,42 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
     </main>
     {%- include footer.html -%}
   </body>
+<!-- sidebar.html -->
+<sidebar class="site-sidebar">
+  <div class="profile-wrap">
+    <div class="profile-img">
+      <img src="/assets/profile.png" alt="">
+    </div>
+    <h1><a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
+  </div>
+  <div class="category-wrap">
+    <h2>CATEGORIES</h2>
+    <ul>
+    {% for category in site.categories %}
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      <li><a href="{{base_path}}/categories/#{{category_name}}">{{ category_name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="tag-wrap">
+    <h2>TAGS</h2>
+    <ul>
+      {% for tag in site.tags %}
+      {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
+      <li>
+        <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+          {{tag_name}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</sidebar>
 ```
 {% endraw %}
 
-포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다 .
+여기서 사용된 capture 태그를 설명하자면
+> 포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다.
 
+for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다.
 https://jekyllrb-ko.github.io/docs/structure/
