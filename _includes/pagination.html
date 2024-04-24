@@ -17,28 +17,24 @@
 {% if prev_post or next_post %}
   <nav class="pagination">
     {% if prev_post %}
-    <div  class="pagination-prev button">
+    <a href="{{ prev_post.url }}" class="pagination-prev button">
       <div class="icon">&#10140;</div>
       <div class="wrap">
         <span>이전글</span>
-        <a href="{{ prev_post.url }}">{{ prev_post.title }}</a>
+        <div>{{ prev_post.title }}</div>
       </div>
-    </div>
+    </a>
     {% endif %}
     {% if next_post %}
-    <div class="pagination-next button">
+    <a href="{{ next_post.url }}" class="pagination-next button">
       <div class="wrap">
         <span>다음글</span>
-        <a href="{{ next_post.url }}">{{ next_post.title }}</a> 
+        <div>{{ next_post.title }}</div> 
       </div>
       <div class="icon">&#10140;</div>
-    </div>
+    </a>
     {% endif %}
   </nav>
 {% endif %}
-{% for post in cat_list %}
-<div>
-  {{post.title}}
-</div>
-{% endfor %}
+
 

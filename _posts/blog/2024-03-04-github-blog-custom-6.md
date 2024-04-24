@@ -161,7 +161,7 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
       {% for tag in site.tags %}
       {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
       <li>
-        <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+        <a href="{{base_path}}/categories/#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
           {{tag_name}}
         </a>
       </li>
@@ -175,5 +175,6 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
 여기서 사용된 capture 태그를 설명하자면
 > 포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다.
 
-for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다.
+for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다. 카테고리나 태그를 누르면 해당 글로 가기 위해서 우선 url+#id 로 경로를 설정해두겠습니다. 페이지에서 url 뒤에 #id 가 붙으면 해당 아이디를 가진 요소가 있는 곳으로 스크롤이 됩니다!
+
 https://jekyllrb-ko.github.io/docs/structure/

@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 <article
   class="post h-entry"
   itemscope
@@ -36,14 +35,14 @@ layout: default
   </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    {{ content | toc }}
+    {{ content }}
   </div>
-
+  <div class="post-toc e-content" itemprop="articleBody">
+    {{ content | toc_only }}
+  </div>
   {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
-  endif -%}
-  
-  
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
-
+    endif -%}
+    
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </article>
 {%- include pagination.html -%}

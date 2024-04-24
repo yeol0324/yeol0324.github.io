@@ -110,7 +110,7 @@
     .profile-img {
       width: 100px;
       height: 100px;
-      border: inset #fee86f 6px;
+      border: inset $point-color 6px;
       border-radius: 100%;
       overflow: hidden;
       pointer-events: none;
@@ -286,6 +286,28 @@
   @include relative-font-size(1.5);
 }
 
+.post-toc {
+  width: 200px;
+  margin-left: 800px;
+  border-left: 4px solid $point-color;
+  position: fixed;
+  top: 80px;
+  ul {
+    margin: 0;
+    padding: 10px;
+    ul {
+      padding: 0 15px;
+      font-size: 0.9em;
+    }
+  }
+  * {
+    list-style: none;
+  }
+  @include media-query(1600px) {
+    display: none;
+  }
+}
+
 /**
  * Posts
  */
@@ -385,30 +407,33 @@
   .button {
     width: 300px;
     background: #f8f9fa;
+    color: $text-color;
     padding: 10px 0;
-    * {
-      cursor: pointer;
-    }
+    cursor: pointer;
     span {
       font-size: 12px;
-    }
-    a {
-      font-size: 18px;
-      font-weight: bold;
-      max-width: 220px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
     .icon {
       width: 30px;
       height: 30px;
       margin: 10px;
-      color: #fee86f;
-      border: 1px solid #fee86f;
+      color: $point-color;
+      border: 1px solid $point-color;
       border-radius: 100px;
       transition: 0.4s;
       @include flexbox(center, center);
+    }
+    .wrap {
+      * {
+        max-width: 220px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    &:hover {
+      text-decoration: none !important;
+      color: #808080;
     }
     &.pagination-prev {
       @include flexbox(start, center);

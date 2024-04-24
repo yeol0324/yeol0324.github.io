@@ -38,16 +38,22 @@ tags: jekyll blog github-page
 {% if prev_post or next_post %}
   <nav class="pagination">
     {% if prev_post %}
-    <div  class="pagination-prev button">
-      <div>이전글</div>
-      <a href="{{ prev_post.url }}">{{ prev_post.title }}</a>
-    </div>
+    <a href="{{ prev_post.url }}" class="pagination-prev button">
+      <div class="icon">&#10140;</div>
+      <div class="wrap">
+        <span>이전글</span>
+        <div>{{ prev_post.title }}</div>
+      </div>
+    </a>
     {% endif %}
     {% if next_post %}
-    <div class="pagination-next button">
-      <div>다음글</div>
-      <a href="{{ next_post.url }}">{{ next_post.title }}</a>
-    </div>
+    <a href="{{ next_post.url }}" class="pagination-next button">
+      <div class="wrap">
+        <span>다음글</span>
+        <div>{{ next_post.title }}</div> 
+      </div>
+      <div class="icon">&#10140;</div>
+    </a>
     {% endif %}
   </nav>
 {% endif %}
@@ -59,7 +65,11 @@ tags: jekyll blog github-page
 저장이 되었다면 _layouts/post.html 파일에 들어가서 방금 만들어 준 html 을 넣어주겠습니다.
 컴포넌트 방식과 동일하죠?
 
-![](/assets/images/2024-03-04-github-blog-custom-3/02.png)
+{% raw %}
+```
+{%- include pagination.html -%}
+```
+{% endraw %}
 
 _layout.scss 에 디자인을 적용해 주었습니다.
 
@@ -69,30 +79,33 @@ _layout.scss 에 디자인을 적용해 주었습니다.
   .button {
     width: 300px;
     background: #f8f9fa;
+    color: $text-color;
     padding: 10px 0;
-    * {
-      cursor: pointer;
-    }
+    cursor: pointer;
     span {
       font-size: 12px;
-    }
-    a {
-      font-size: 18px;
-      font-weight: bold;
-      max-width: 220px;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
     }
     .icon {
       width: 30px;
       height: 30px;
       margin: 10px;
-      color: #fee86f;
-      border: 1px solid #fee86f;
+      color: $point-color;
+      border: 1px solid $point-color;
       border-radius: 100px;
       transition: 0.4s;
       @include flexbox(center, center);
+    }
+    .wrap {
+      * {
+        max-width: 220px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    &:hover {
+      text-decoration: none !important;
+      color: #808080;
     }
     &.pagination-prev {
       @include flexbox(start, center);
