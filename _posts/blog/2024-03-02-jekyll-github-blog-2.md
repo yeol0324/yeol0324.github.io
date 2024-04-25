@@ -9,9 +9,17 @@ tags: jekyll blog github-page
 
 _mac Os 기준으로 작성되었습니다_
 
-이번에는 jekyll 을 사용해 블로그를 꾸며주겠습니다. jekyll 은 ruby기반의 프레임워크로, 어쩌고저쩌고. ruby 설치가 꼭 필요합니다.
+# jekyll?
 
-_처음에 기존에 설치된 ruby로 설치를 했었는데 버전 2.7 이상부터 된다는 에러 메시지가 나왔습니다. 그래서 ruby부터 다시 설치를 진행해주었습니다. 여러분은 ruby 3.0 이상, 5.0미만 버전으로 설치하시길 추천드립니다._
+>Jekyll is a static site generator. It takes text written in your favorite markup language and uses layouts to create a static website. You can tweak the site’s look and feel, URLs, the data displayed on the page, and more.
+
+Jekyll은 정적 사이트 생성기입니다. 선호하는 마크업 언어로 작성된 텍스트를 사용하고 레이아웃을 사용하여 정적 웹 사이트를 만듭니다. 사이트의 모양과 느낌, URL, 페이지에 표시되는 데이터 등을 조정할 수 있습니다.
+
+Github Pages 시작하기 설명에도 jekyll 테마를 선택해서 사용하는 방법을 추천하고 있습니다. jekyll을 사용해 블로그를 꾸며보겠습니다. jekyll은 ruby기반의 프레임워크로 ruby 설치가 꼭 필요합니다.
+
+# 진행중 발생한 이슈
+
+_처음에 기존에 설치된 ruby로 설치를 했었는데 버전 2.7 이상부터 된다는 에러 메시지가 나왔습니다. 그래서 ruby부터 다시 설치를 진행해주었습니다. ruby 3.0 이상, 5.0미만 버전으로 설치하시길 추천드립니다._
 
 ```bash
 ERROR: Error installing jekyll:
@@ -19,10 +27,18 @@ The last version of rouge (>= 3.0, < 5.0) to support your Ruby & RubyGems was 3.
 rouge requires Ruby version >= 2.7. The current ruby version is 2.6.4.104.
 ```
 
+_test용으로 만든 html이 폴더에 들어있어서 jekyll을 기본으로 다운로드 받을 때 생긴 오류. 폴더를 완전히 비우고 다시 실행하면 캡처본처럼 기본 테마가 설치 됩니다._
+
+```bash
+Conflict: /Users/leeyurim/Documents/yeol0324.github.io exists and is not empty.
+Ensure /Users/leeyurim/Documents/yeol0324.github.io is empty or else try again with `--force` to proceed and overwrite any files.
+```
+
+
 # ruby 설치하기
 
-필요한 루비 버전을 쉽게 관리하고 컨트롤할 수 있는 rbenv를 통해서 설치를 해주었습니다.
-
+필요한 루비 버전을 쉽게 관리하고 컨트롤할 수 있는 rbenv를 통해서 설치를 해주었습니다.<br>
+~~window 에서는 rbenv를 사용할 수 없고 [RubyInstaller](https://rubyinstaller.org/downloads/) 또는 Pik를 사용한다고 합니다.~~
 ```bash
 brew update
 brew install rbenv ruby-build
@@ -47,66 +63,61 @@ vim ~/.zshrc
 ```bash
 source ~/.zshrc
 ```
+# install jekyll
 
-그리고 gem install을 실행합니다.
+터미널에서 깃 블로그 폴더로 이동을 하고 gem install을 실행합니다.
 
 ```bash
 gem install bundler
-
 gem install jekyll
 gem install jekyll bundler
 gem install github-pages
 ```
 
-깃 블로그 레파지토리를 클론한 폴더로 이동을 해줍니다. 클론 폴더에 파일이 있으면 에러가 발생하기 때문에 test 용 파일이 있다면 모두 지워준 후 진행하시면 됩니다.
+ 클론 폴더에 파일이 있으면 에러가 발생하기 때문에 test 용 파일이 있다면 모두 지워준 후 진행하시면 됩니다.
 터미널에서 다음을 입력해 줍니다
-jekyll new ./{폴더명}
-저는 블로그를 만들 폴더에서 진행하기떄문에 jekyll new ./ 로 진행해주었습니다.
 
-![](/assets/images/2024-03-02-jekyll-github-blog-2/03.png)
+```bash
+jekyll new ./
+```
+저는 블로그를 만들 폴더에서 진행하기떄문에 jekyll new ./ 로 진행해주었습니다. 폴더를 만들고 그 안에 작업하려면 new ./{폴더명} 으로 입력하면 됩니다.
 
-파일을 정상적으로 비우고 진행을 하면 캡처본처럼 기본 테마가 설치 됩니다.
-{% raw %}
-{{파일 설명}}
-{% endraw %}
+# jekyll 서버 실행
 
-여기까지 과정을 마치셨다면
-테마의 번들 설치 → 서버를 띄우기
-과정이 남았습니다
+여기까지 과정을 마치셨다면 거의 다 왔습니다. 서버를 띄우기, 테마 번들 설치만 남았습니다.
+
 
 ```bash
 bundle install
 bundle exec jekyll serve
 ```
 
-서버를 띄우는데 성공하면
-서버 주소를 보여줍니다
-[](/assets/images/2024-03-02-jekyll-github-blog-2/04.png)
+서버를 띄우는데 성공하면 빌드 결과가 쭈욱 나오다가 jekyll 로컬 서버 주소를 알려줍니다.<br/>
+<span class="h-yellow">Server address: http://127.0.0.1:4000/</span><br/>
+http://127.0.0.1:4000/ 또는 http://localhost:4000/ 을 크롬에 (인터넷) 주소창에 입력하면 내 블로그가 실행이 됩니다!
 
-[](/assets/images/2024-03-02-jekyll-github-blog-2/06.png)
+![](/assets/images/2024-03-02-jekyll-github-blog-2/06.png)
 
-해당 url 을 크롬에 (인터넷) 주소창에 입력하시면
-
-이렇게 화면이 구성되어있는 것을 볼 수 있고 posts 글 하나를 볼 수가 있습니다.
-프로젝트에 있는 \_posts 폴더 안에 있는 markdown이랑 똑같은 것을 볼 수가 있습니다.
-
-git add .
-git commit -m "메시지 입력"
-git push
-
-푸시를 완료하고 난 후 자신의 깃헙 블로그로 들어가보면 들어가면 적용된 것을 볼 수 있습니다!
-
-[](/assets/images/2024-03-02-jekyll-github-blog-2/10.png)
-[](/assets/images/2024-03-02-jekyll-github-blog-2/11.png)
-
-원하는 테마 깃을 찾아 클론을 해줍니다.
-https://github.com/ejjoo/jekyll-theme-monos.git
-https://sighingnow.github.io/jekyll-gitbook/
-
-수정할 때마다 hot reload 를 사용하고 싶다면 다음을 입력해 줍니다
-
+>수정할 때마다 hot reload 를 사용하고 싶다면 <span class="h-yellow">--livereload</span>를 붙여 서버를 실행해 줍니다.
 ```
 bundle exec jekyll serve --livereload
 ```
 
-참고 https://jekyllrb.com/docs/posts/
+# 배포하기
+
+
+프로젝트에 있는 \_posts 폴더 안에 있는 markdown이랑 똑같은 것을 볼 수가 있습니다.
+
+```
+ git add --all
+ git commit -m "commit message"
+ git push -u origin main
+```
+![](/assets/images/2024-03-02-jekyll-github-blog-2/10.png)
+
+main 브랜치에 푸시 이벤트를 걸어 배포를 하도록 설정을 해두었으니([참고 : 블로그 만들기 1]({{base_path}}/blog/jekyll-github-blog-1/#자동-배포-설정)), 커밋 푸시를 완료하고 난 후 자신의 깃헙 블로그 `https://username.github.io/` 로 들어가보면 들어가면 적용된 것을 볼 수 있습니다!
+
+
+참고 
+- <https://jekyllrb.com/docs/posts/>
+- <https://jekyllrb.com/docs/step-by-step/01-setup/>
