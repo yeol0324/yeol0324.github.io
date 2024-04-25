@@ -4,6 +4,7 @@ title: "axios 커스텀해서 사용하기"
 date: 2024-03-02 10:06:52 +0900
 categories: javascript
 tags: javascript axios
+published : false
 ---
 
 const instance: AxiosInstance = axios.create({

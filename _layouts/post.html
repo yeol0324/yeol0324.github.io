@@ -33,13 +33,9 @@ layout: default
       {%- endif -%}
     </p>
   </header>
-
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
-  <!-- <div class="post-toc e-content" itemprop="articleBody">
-    {{ content | toc }}
-  </div> -->
   <div class="post-toc e-content" itemprop="articleBody">
     {% include toc.html html=content %}
   </div>

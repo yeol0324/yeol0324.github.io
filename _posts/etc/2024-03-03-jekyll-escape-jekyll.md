@@ -2,8 +2,8 @@
 layout: post
 title: "jekyll 문법 표현하기"
 date: 2024-03-02 10:06:52 +0900
-categories: blog
-tags: jekyll blog github-page
+categories: etc
+tags: jekyll markdown
 ---
 
 jekyll github blog는에 마크다운(markdown) 으로 글을 씁니다.

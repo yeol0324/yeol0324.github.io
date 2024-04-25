@@ -35,24 +35,24 @@ body {
   -o-font-feature-settings: "kern" 1;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
-  display: grid;
+  display: flex;
   min-height: 100vh;
   flex-direction: column;
-  grid-template-areas:
-    "sidebar header header"
-    "sidebar main   main  "
-    "sidebar main   main  "
-    "sidebar footer footer";
-  grid-template-rows: 70px 1fr 500px;
-  grid-template-columns: 280px 2fr 1fr;
-  @include media-query($on-palm) {
-    grid-template-areas:
-      "header header"
-      "main   main  "
-      "main   main  "
-      "footer footer";
-    grid-template-rows: 70px 1fr 500px;
-  }
+  // grid-template-areas:
+  //   "sidebar header header"
+  //   "sidebar main   main  "
+  //   "sidebar main   main  "
+  //   "sidebar footer footer";
+  // grid-template-rows: 70px 1fr 500px;
+  // grid-template-columns: 280px 2fr 1fr;
+  // @include media-query($on-palm) {
+  //   grid-template-areas:
+  //     "header header"
+  //     "main   main  "
+  //     "main   main  "
+  //     "footer footer";
+  //   grid-template-rows: 70px 1fr 500px;
+  // }
 }
 .site-header {
   grid-area: header;

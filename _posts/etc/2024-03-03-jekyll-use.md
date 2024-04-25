@@ -2,8 +2,8 @@
 layout: post
 title: "jekyll 문법 사용하기"
 date: 2024-03-02 10:06:52 +0900
-categories: jekyll
-tags: jekyll blog github-page
+categories: etc
+tags: jekyll
 ---
 {% raw %} {{content}} , {{page}} 등의 변수를 사용하여 페이지나 포스트의 렌더링 된 컨텐츠를 나타낼 수 있습니다. jekyll layout 에는 상속이라는 개념도 있습니다. 이미 존재하는 레이아웃에 추가해서 일부 페이지에만 적용할 때 사용합니다. 예를들면 post 페이지에서 항상 최상단에 제목과 카테고리가 표시되는 형식을 만들 수 있습니다.
 _layouts/post.html 에 다음과 같이 작성 후 사용할 수 있습니다.

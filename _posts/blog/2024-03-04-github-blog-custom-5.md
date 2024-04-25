@@ -5,6 +5,7 @@ summary: 페이지 추가하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
 tags: jekyll blog github-page
+published : false
 ---
 
 처음에 테마를 다운 받고 about 페이지가 있었는데요, 저한테 필요한 카테고리 페이지를 추가해보겠습니다.
