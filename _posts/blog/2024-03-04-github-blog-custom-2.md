@@ -71,7 +71,7 @@ _layouts/post.html
     {{ content }}
   </div>
   <div class="post-toc e-content" itemprop="articleBody">
-    {{ content | toc_only }}
+    {% toc %}
   </div>
 ```
 {% endraw %}
