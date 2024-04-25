@@ -38,7 +38,7 @@ layout: default
     {{ content }}
   </div>
   <div class="post-toc e-content" itemprop="articleBody">
-    {% toc %}
+    {{ content | toc_only }}
   </div>
   {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
     endif -%}
