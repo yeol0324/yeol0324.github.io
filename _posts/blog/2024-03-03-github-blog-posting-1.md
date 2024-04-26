@@ -50,6 +50,6 @@ jekyll 사이트에 검색도 없어서 한참 찾았습니다 . . .
 
 ---
 
-참고 문서
-https://www.markdownguide.org/
-https://jekyllrb.com/
+참고
+- <https://www.markdownguide.org/>
+- <https://jekyllrb.com/>

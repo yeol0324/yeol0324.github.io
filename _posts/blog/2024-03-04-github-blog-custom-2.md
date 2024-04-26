@@ -1,64 +1,46 @@
 ---
 layout: post
 title: "jekyll github blog 커스텀하기 [2]"
-summary: post에 toc 추가하기
+summary: 태그 모음 추가하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
 tags: jekyll blog github-page
 ---
 
-TOC(Table Of Content)를 github blog 에 추가하겠습니다. TOC는 markdown 에서 헤딩 태그를 기준으로 생성이 되는 목차 입니다. 
 
-[jekyll-toc](https://github.com/allejo/jekyll-toc)를 사용해서 블로그에 TOC를 추가해주겠습니다.
 
-# TOC html 적용
+Pass the --livereload option to serve to automatically refresh the page with each change you make to the source files: bundle exec jekyll serve --livereload
 
-먼저 toc html을 다운로드 해줍니다. [다운로드](https://github.com/allejo/jekyll-toc/releases/download/v1.1.0/toc.html)
-
-다운로드 한 html을 프로젝트의 _includes 폴더에 넣어 줍니다.
-
-# post에 TOC 렌더링하기
-
-저는 post 페이지에서만 toc 가 필요합니다. 그래서 post.html 에 추가를 할 건데요, 모든 페이지에서 toc 가 나오게 하기 위해서는 default.html 에 추가해 주시면 됩니다.
-{% raw %}
-```
-<div class="post-content e-content" itemprop="articleBody">
-  {{ content }}
-</div>
-<div class="post-toc e-content" itemprop="articleBody">
-  {% include toc.html html=content %}
-</div>
-```
-{% endraw %}
-<br><br>
-> ![](/assets/images/2024-03-04-github-blog-custom-2/01.png)
-짠✨
-
-content 하단에 toc 를 추가해주었더니 포스트 아래에 toc가 나왔습니다. 이제 css만 적용해주면 끝 ❗️
-# Style 적용하기
-
-```scss
-.post-toc {
-  width: 200px;
-  margin-left: 800px;
-  border-left: 4px solid $point-color;
-  position: fixed;
-  top: 80px;
-  ul {
-    margin: 0;
-    padding: 10px;
-    ul {
-      padding: 0 15px;
-      font-size: 0.9em;
-    }
-  }
-  * {
-    list-style: none;
-  }
-  @include media-query($on-wide) {
-    display: none;
-  }
-}
+정적인 html 로 이루어져있는 사이트와 같이 /폴더명/파일명 이 곧 주소가 됩니다.
+파일은 기본적으로 markdown 을 사용하며 html 도 지원하고 있습니다.
+예시
+```markdown
+.
+├── about.md # => http://example.com/about.html
+├── documentation # folder containing pages
+│ └── doc1.md # => http://example.com/documentation/doc1.html
+├── design # folder containing pages
+│ └── draft.md # => http://example.com/design/draft.html
 ```
 
-참고 https://github.com/toshimaru/jekyll-toc
+
+> 모든 블로그 게시물 파일은 일반적으로 레이아웃 이나 기타 메타데이터를 설정하는 데 사용되는 머리말 로 시작해야 합니다. 간단한 예에서는 비어 있을 수 있습니다.
+
+```markdown
+---
+layout: post
+title: "Welcome to Jekyll!"
+---
+```
+
+<h1>Tag Cloud</h1>
+'{% raw %}{% assign tags = site.tags | sort %} {% for tag in tags %}
+``` html
+<span class="site-tag">
+  <a href="/tag/{{ tag | first | slugify }}/">
+    '{{ tag[0] }}' ('{{ tag | last | size }}')
+  </a>
+</span>
+```
+{% endfor %}{% endraw %}' 나는 동글동글한 태그가 필요하고, 태그를 누르면
+카테고리 페이지에 해당 태그의 글 목록을 보여주고 싶다! 

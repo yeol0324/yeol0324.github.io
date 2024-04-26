@@ -1,143 +1,214 @@
 ---
 layout: post
 title: "jekyll github blog 커스텀하기 [3]"
-summary: 카테고리 이전글 다음글 버튼 추가하기
+summary: post에 toc, sidebar 추가하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
 tags: jekyll blog github-page
 ---
 
-오늘은 포스트 하단에 nav 버튼을 추가해보겠습니다.
+아직은 허전한 github blog에 목차와, sidebar 를 추가하겠습니다.
 
-![](/assets/images/2024-03-04-github-blog-custom-3/01.png)
+# TOC
 
-블로그에 이전/다음 글이 이어지는 경우가 많아서 포스트 하단마다 직접 버튼을 추가해 주고 있었습니다. 포스트마다 직접 추가하려고 하니 귀찮기도 하고 까먹을 때도 많아서 자동으로 포스트에 추가되도록 해보겠습니다!
+TOC 는 markdown 에서 헤딩 태그를 기준으로 생성이 되는 목차 입니다. 원하는 목차로 갈 수 있도록 하는 기능인데요 저는 항상 오른쪽에 떠있게 두겠습니다.
 
-먼저 _includes 폴더 안에 pagination.html 을 만들어 주고 다음과 같이 작성을 해줍니다.
+[jekyll-toc](https://github.com/allejo/jekyll-toc)를 사용해서 블로그에 TOC를 추가해주겠습니다.
 
-[jekyll 문법 사용하기](https://yeol0324.github.io/blog/jekyll-use/) 참고!
+## toc 적용
 
+먼저 toc html을 다운로드 해줍니다. [다운로드](https://github.com/allejo/jekyll-toc/releases/download/v1.1.0/toc.html)
+
+다운로드 한 html을 프로젝트의 _includes 폴더에 넣어 줍니다.
+
+## post에 toc 렌더링하기
+
+저는 post 페이지에서만 toc 가 필요합니다. 그래서 post.html 에 추가를 할 건데요, 모든 페이지에서 toc 가 나오게 하기 위해서는 default.html 에 추가해 주시면 됩니다.
+{% raw %}
+```
+<div class="post-content e-content" itemprop="articleBody">
+  {{ content }}
+</div>
+<div class="post-toc e-content" itemprop="articleBody">
+  {% include toc.html html=content %}
+</div>
+```
+{% endraw %}
+<br><br>
+> ![](/assets/images/2024-03-04-github-blog-custom-2/01.png)
+짠✨
+
+content 하단에 toc 를 추가해주었더니 포스트 아래에 toc가 나왔습니다. 이제 css만 적용해주면 끝 ❗️
+## toc style
+
+```scss
+.post-toc {
+  width: 200px;
+  margin-right: -300px;
+  border-left: 4px solid #fee86f;
+  position: sticky;
+  float: right;
+  clear: both;
+  margin-top: 200px;
+  top: 100px;
+  a {
+    color: $light-text-color;
+  }
+  ul {
+    margin: 0;
+    padding: 0 10px;
+    li {
+      padding: 4px;
+    }
+    ul {
+      padding: 0 15px;
+      font-size: 0.9em;
+    }
+  }
+  * {
+    list-style: none;
+  }
+  @include media-query($on-layout) {
+    display: none;
+  }
+}
+```
+
+
+# Side Bar
+
+sidebar 는 저의 프로필이나 카테고리 등을 나타내어 한눈에 볼 수 있도록 만들어 두려고 합니다. 오른쪽에는 toc를 배치해두었으니 sidebar 는 오른쪽에 배치를 하겠습니다.
+
+## sidebar 추가하기
+
+sidebar는 모든 페이지에서 항상 떠있도록 추가할 거예요. 블로그에서 그 글을 보다보면 어떤 카테고리들이 있는지 쭉 보고 싶었던 적이 많았던 것 같습니다. 카테고리 상세 페이지를 가게 되면 이전에 보던 글을 다시 찾기 어려웠던 기억이 있어서 저는 sidebar 에서 블로그에 카테고리를 쭉 보여주고, 그 아래에는 tag들을 볼 수 있도록 만들겠습니다.
+
+_includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이지에서 보이도록 하기 위해 default.html 에서 header 아래에 배치했습니다.
+
+{% raw %}
 ```html
-{% raw %}
-{% assign cat = page.categories[0] %}
-{% assign cat_list = site.categories[cat] %}
-{% for post in cat_list %}
-  {% if post.url == page.url %}
-  	{% assign prevIndex = forloop.index0 | minus: 1 %}
-  	{% assign nextIndex = forloop.index0 | plus: 1 %}
-  	{% if forloop.first == false %}
-  	  {% assign next_post = cat_list[prevIndex] %}
-  	{% endif %}
-  	{% if forloop.last == false %}
-  	  {% assign prev_post = cat_list[nextIndex] %}
-  	{% endif %}
-  	{% break %}
-  {% endif %}
-{% endfor %}
-
-{% if prev_post or next_post %}
-  <nav class="pagination">
-    {% if prev_post %}
-    <a href="{{ prev_post.url }}" class="pagination-prev button">
-      <div class="icon">&#10140;</div>
-      <div class="wrap">
-        <span>이전글</span>
-        <div>{{ prev_post.title }}</div>
+<!-- default.html -->
+ <body>
+   {%- include header.html -%}
+    {%- include sidebar.html -%} // 추가
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        {{ content }}
       </div>
-    </a>
-    {% endif %}
-    {% if next_post %}
-    <a href="{{ next_post.url }}" class="pagination-next button">
-      <div class="wrap">
-        <span>다음글</span>
-        <div>{{ next_post.title }}</div> 
-      </div>
-      <div class="icon">&#10140;</div>
-    </a>
-    {% endif %}
-  </nav>
-{% endif %}
-{% endraw %}
-```
-카테고리 내에서 이동을 하고 싶어서 이렇게 작성을 해보았습니다. <code>page.next.url</code> <code>page.previous.url</code> 을 사용할 수 있습니다.
-
-전체에서 이동을 하고 싶다면 
-저장이 되었다면 _layouts/post.html 파일에 들어가서 방금 만들어 준 html 을 넣어주겠습니다.
-컴포넌트 방식과 동일하죠?
-
-{% raw %}
-```
-{%- include pagination.html -%}
+    </main>
+    {%- include footer.html -%}
+  </body>
+<!-- sidebar.html -->
+<sidebar class="site-sidebar">
+  <div class="profile-wrap">
+    <div class="profile-img">
+      <img src="/assets/profile.png" alt="">
+    </div>
+    <h1><a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
+  </div>
+  <div class="category-wrap">
+    <h2>CATEGORIES</h2>
+    <ul>
+    {% for category in site.categories %}
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      <li><a href="{{base_path}}/categories/#{{category_name}}">{{ category_name }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="tag-wrap">
+    <h2>TAGS</h2>
+    <ul>
+      {% for tag in site.tags %}
+      {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
+      <li>
+        <a href="{{base_path}}/categories/#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+          {{tag_name}}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</sidebar>
 ```
 {% endraw %}
 
-_layout.scss 에 디자인을 적용해 주었습니다.
+여기서 사용된 capture 태그를 설명하자면
+> 포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다.
 
-``` scss
-.pagination {
-  @include flexbox(between, center);
-  .button {
-    width: 300px;
-    background: #f8f9fa;
-    color: $text-color;
-    padding: 10px 0;
-    cursor: pointer;
-    span {
-      font-size: 12px;
-    }
-    .icon {
-      width: 30px;
-      height: 30px;
-      margin: 10px;
-      color: $point-color;
-      border: 1px solid $point-color;
-      border-radius: 100px;
-      transition: 0.4s;
-      @include flexbox(center, center);
-    }
-    .wrap {
-      * {
-        max-width: 220px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다. 카테고리나 태그를 누르면 해당 글로 가기 위해서 우선 url+#id 로 경로를 설정해두겠습니다. 페이지에서 url 뒤에 #id 가 붙으면 해당 아이디를 가진 요소가 있는 곳으로 스크롤이 됩니다!
+
+## sidebar style
+
+```scss
+.site-sidebar {
+  width: 200px;
+  top: 100px;
+  margin-left: -300px;
+  position: fixed;
+  border-right: 2px solid #eee;
+  a {
+    color: $light-text-color;
+  }
+  .profile-wrap {
+    @include column-flexbox(center, center);
+
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      border: inset $point-color 6px;
+      border-radius: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      img {
+        height: 100%;
+        max-width: none;
+        margin-left: -10%;
       }
     }
-    &:hover {
-      text-decoration: none !important;
-      color: #808080;
-    }
-    &.pagination-prev {
+  }
+  .category-wrap {
+    margin-top: 20px;
+  }
+  .tag-wrap {
+    margin-top: 20px;
+    ul {
       @include flexbox(start, center);
-      .icon {
-        transform: rotate(180deg);
-      }
-      .wrap {
-        @include column-flexbox(center, start);
-      }
-    }
-    &.pagination-next {
-      @include flexbox(end, center);
-      .wrap {
-        @include column-flexbox(center, end);
+      flex-wrap: wrap;
+      margin: 0;
+      li {
+        list-style: none;
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        padding: 0px 10px;
+        margin: 2px;
       }
     }
-    &:hover {
-      &.pagination-prev {
-        .icon {
-          transform: rotate(180deg) translateX(4px);
-        }
+  }
+  @include media-query($on-layout) {
+    position: sticky;
+    top: 0;
+    margin-left: 0;
+    display: flex;
+    background: #fff;
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #eee;
+    .profile-wrap {
+      .profile-img {
+        width: 60px;
+        height: 60px;
+        border: inset #fee86f 2px;
       }
-      &.pagination-next {
-        .icon {
-          transform: translateX(4px);
-        }
+      h1 {
+        display: none;
       }
     }
   }
 }
-
 ```
-위에서 사용한 include가 뭔지 궁금하다면? [scss 사용하기](https://yeol0324.github.io/blog/scss-use/)
 
-[참고 문서](https://talk.jekyllrb.com/t/how-to-link-to-next-and-previous-posts-for-same-blog-category/629)
+---
+
+참고
+- <https://github.com/toshimaru/jekyll-toc>
+- <https://jekyllrb-ko.github.io/docs/structure/>

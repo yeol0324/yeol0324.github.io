@@ -79,6 +79,6 @@ test blog라고 작성하여 커밋 푸시를 해보겠습니다.
 다음은 jekyll 셋팅으로 돌아오겠습니다.
 
 
-_참고 자료_
+참고
 - <https://docs.github.com/en/pages/quickstart>
 - <https://pages.github.com/>

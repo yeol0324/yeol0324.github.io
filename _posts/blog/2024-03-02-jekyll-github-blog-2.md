@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "github blog 만들기 [2]"
+title: "Github Blog 만들기 [2]"
 summary: jekyll 셋팅하기
 date: 2024-03-01 10:06:52 +0900
 categories: blog
