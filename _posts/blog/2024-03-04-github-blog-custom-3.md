@@ -39,7 +39,7 @@ TOC 는 markdown 에서 헤딩 태그를 기준으로 생성이 되는 목차 �
 짠✨
 
 content 하단에 toc 를 추가해주었더니 포스트 아래에 toc가 나왔습니다. 이제 css만 적용해주면 끝 ❗️
-## toc style
+## toc✨ style
 
 ```scss
 .post-toc {
@@ -111,7 +111,7 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
     <ul>
     {% for category in site.categories %}
       {% capture category_name %}{{ category | first }}{% endcapture %}
-      <li><a href="{{base_path}}/categories/#{{category_name}}">{{ category_name }}</a></li>
+      <li><a href="{{base_path}}/categories/?category={{category_name}}">{{ category_name }}</a></li>
       {% endfor %}
     </ul>
   </div>
@@ -121,7 +121,7 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
       {% for tag in site.tags %}
       {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
       <li>
-        <a href="{{base_path}}/categories/#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+        <a href="{{base_path}}/categories/?tag={{tag_name}}">
           {{tag_name}}
         </a>
       </li>
@@ -135,9 +135,23 @@ _includes 디렉토리 안에 sidebar.html 을 생성해 주고, 전체 페이�
 여기서 사용된 capture 태그를 설명하자면
 > 포함에 전달하는 매개변수에 이 변수를 포함하려면 포함에 전달하기 전에 전체 매개변수를 변수로 저장해야 합니다. capture태그를 사용하여 변수를 생성 할 수 있습니다.
 
-for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다. 카테고리나 태그를 누르면 해당 글로 가기 위해서 우선 url+#id 로 경로를 설정해두겠습니다. 페이지에서 url 뒤에 #id 가 붙으면 해당 아이디를 가진 요소가 있는 곳으로 스크롤이 됩니다!
+for 문에 선언한 변수를 바로 사용할 수 없으므로 capture 태그를 사용하여 변수를 저장해야합니다. 그래서 capture 태그를 사용해서 변수를 저장 후 사용해줬습니다.
 
-## sidebar style
+마지막으로 카테고리나 태그를 누르면 해당 포스트 리스트를 바로 열어주기 위해서 파라미터를 추가해주었습니다. 이전 글에서 만들었던 categories.html 에 기능을 추가해주었습니다.
+```javascript
+// categories.html
+
+const checkParam = ()=>{
+  const url = new URL(window.location.href)
+  const urlParams = url.searchParams
+  if (urlParams.size !== 1) return false
+  if(urlParams.get('category')) showList('category', urlParams.get('category'))
+  if(urlParams.get('tag')) showList('tag', urlParams.get('tag'))
+}
+checkParam()
+```
+
+## sidebar✨ style
 
 ```scss
 .site-sidebar {

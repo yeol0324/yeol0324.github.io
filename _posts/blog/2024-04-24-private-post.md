@@ -17,10 +17,7 @@ Github pages blog 글을 작성하다보면 한번에 끝내기 어려운 경우
 ---
 layout: post
 title: "블로그 글 공개/비공개 설정"
-summary: Github pages blog 글 비공개 설정
-date: 2024-04-24 10:06:52 +0900
-categories: blog
-tags: github-page
+. . .
 published: false << 비공개 설정
 ---
 ```

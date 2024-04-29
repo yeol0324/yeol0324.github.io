@@ -36,4 +36,5 @@ markdown 사용법만 익히면 쉽게 작성할 수 있을 것이라고 생각�
 
 참고 문서
 
-> https://jekyllrb.com/docs/liquid/tags/
+- <https://jekyllrb.com/docs/liquid/tags/>
+- <https://jekyllrb.com/>

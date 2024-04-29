@@ -38,7 +38,7 @@ Ensure /Users/leeyurim/Documents/yeol0324.github.io is empty or else try again w
 # ruby 설치하기
 
 필요한 루비 버전을 쉽게 관리하고 컨트롤할 수 있는 rbenv를 통해서 설치를 해주었습니다.<br>
-~~window 에서는 rbenv를 사용할 수 없고 [RubyInstaller](https://rubyinstaller.org/downloads/) 또는 Pik를 사용한다고 합니다.~~
+**window 에서는 rbenv를 사용할 수 없고 [RubyInstaller](https://rubyinstaller.org/downloads/) 를 사용한다고 합니다.**
 ```bash
 brew update
 brew install rbenv ruby-build

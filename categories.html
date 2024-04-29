@@ -1,78 +1,132 @@
 ---
-layout: page
+layout: category
 permalink: /categories/
 title: Category
 ---
-
-<div id="archives">
-  {% for category in site.categories %}
-  <div class="archive-group">
+<div class="title-wrap">
+  <div class="flex">
+    <h1>TAGS</h1>
+    <div class="tag-wrap">
+      {% for tag in site.tags %}
+      {% capture tag_name %}{{ tag | first | slugize }}{% endcapture %}
+      {% capture tag_size %}{{ tag | last | size }}{% endcapture %}
+      <span  class="{{ tag_name }}" onclick="showList('tag', '{{ tag_name }}')">
+        {{ tag_name }}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+  <div style="margin-top: 20px;">
+    <h1>CATEGORIES</h1>
+    <div class="category-wrap">
+      {% for category in site.categories %}
+      {% capture category_name %}{{ category | first }}{% endcapture %}
+      {% capture category_size %}{{ category | last | size }}{% endcapture %}
+      <span
+        class="{{ category_name }}"
+        onclick="showList('category', '{{category_name}}')">
+        <p class="title">{{ category_name }}</p>
+        <p class="count">{{ category_size }}</p>
+      </span>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="post-wrap">
+  <div id="category">
+    {% for category in site.categories %}
     {% capture category_name %}{{ category | first }}{% endcapture %}
-    <h1 id="{{category_name}}"class="category-head">{{ category_name }}</h1>
-    <!-- <a href="#{{category_name}}" onclick="showTag('#{{category_name}}')">
-      {{category_name}} (0)
-    </a> -->
-    {% for post in site.categories[category_name] %}
-    <article class="archive-item">
-      <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
-    </article>
+      <article class="archive-item {{ category_name }}">
+        <h1>{{ category_name }}</h1>
+        {% for post in site.categories[category_name] %}
+          <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
+        {% endfor %}
+      </article>
     {% endfor %}
   </div>
-  {% endfor %}
-</div>
-<ul class="tag-cloud">
-  {% for tag in site.tags %}
-  <!-- tag_name 변수 지정: 태그명은 소문자화(slugize) 한다 -->
-  {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
-  <!-- font_size 변수 지정: 태그숫자/전체태그숫자 * 100 + 50 -->
-  {% capture font_size %}{{tag|last|size| times:100 | divided_by:site.tags.size
-  | plus: 50 }}%{% endcapture %}
-  <!-- tag_size 변수 지정-->
-  {% capture tag_size %}{{tag|last|size}}{% endcapture %}
-
-  <li>
-    <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
-      {{tag_name}} ({{tag_size}})
-    </a>
-  </li>
-
-  {% endfor %}
-</ul>
-
-<div id="archives">
-  {% for tag in site.tags %} {% capture tag_name %}{{tag|first|slugize}}{%
-  endcapture %}
-
-  <div class="archive-group" style="display: none" id="{{tag_name}}">
-    <h3 id="{{tag_name}}">{{ tag_name }}</h3>
-
-    {% for post in site.tags[tag_name] %}
-    <article class="archive-item">
-      <h4>
-        <!-- click 하여 show/hide 한다 -->
-        <a href="{{ root_url }}{{ post.url }}"> {{post.title}} </a>
-      </h4>
-    </article>
+  <div id="tag">
+    {% for tag in site.tags %}
+      {% capture tag_name %}{{ tag | first | slugize }}{% endcapture %}
+        <article class="archive-item {{ tag_name }}">
+          <h1>{{ tag_name }}</h1>
+          {% for post in site.tags[tag_name] %}
+          <h4><a href="{{ site.baseurl }}{{ post.url }}"> {{ post.title }} </a></h4>
+          {% endfor %}
+        </article>
     {% endfor %}
   </div>
-  {% endfor %}
 </div>
 
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <script>
-  $(document).ready(function init() {
-    var url = window.location.href;
-    var req = /#([^\s]+)$/.exec(url);
-
-    if (!Array.isArray(req)) {
-      return false;
-    }
-    var selector = "#" + req.pop();
-    showTag(selector);
-  });
-
-  function showTag(selector) {
-    $(".archive-group").hide();
-    $(selector).show();
+  const showList = (type, name) => {
+    document.querySelectorAll('.on').forEach(item => 
+    item.classList.remove('on')
+    )
+    document.getElementById(`${type}`).querySelector(`.${name}`).classList.add('on')
+    document.querySelector(`.${type}-wrap .${name}`).classList.add('on')
   }
-</script> -->
+  const checkParam = ()=>{
+    const url = new URL(window.location.href)
+    const urlParams = url.searchParams
+    if (urlParams.size !== 1) return false
+    if(urlParams.get('category')) showList('category', urlParams.get('category'))
+    if(urlParams.get('tag')) showList('tag', urlParams.get('tag'))
+  }
+  checkParam()
+</script> 
+<style lang="scss">
+.post-wrap{
+  margin-top: 60px;
+  .archive-item{
+    display: none;
+    &.on{ display: block; }
+  }
+}
+.title-wrap{
+  h1{ margin: 0; }
+  .flex{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+  }
+  .tag-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    span {
+      cursor: pointer;
+      list-style: none;
+      border: 1px solid #ddd;
+      border-radius: 50px;
+      padding: 0px 10px;
+      margin: 2px;
+      &.on{
+        background: #fee86f;
+      }
+    }
+  }
+  .category-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 0;
+    span {
+      width: 140px;
+      padding: 4px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+      p{
+        margin-bottom: 0;
+      }
+      &.on{
+        font-weight: bold;
+        border-bottom: 1px solid #fee86f;
+      }
+    }
+  }
+}
+</style>

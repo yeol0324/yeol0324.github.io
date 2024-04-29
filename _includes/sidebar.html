@@ -10,7 +10,7 @@
     <ul>
     {% for category in site.categories %}
       {% capture category_name %}{{ category | first }}{% endcapture %}
-      <li><a href="{{base_path}}/categories/#{{category_name}}">{{ category_name }}</a></li>
+      <li><a href="{{base_path}}/categories/?category={{category_name}}">{{ category_name }}</a></li>
       {% endfor %}
     </ul>
   </div>
@@ -20,7 +20,7 @@
       {% for tag in site.tags %}
       {% capture tag_name %}{{tag|first|slugize}}{% endcapture %}
       <li>
-        <a href="#{{tag_name}}" onclick="showTag('#{{tag_name}}')">
+        <a href="{{base_path}}/categories/?tag={{tag_name}}">
           {{tag_name}}
         </a>
       </li>
@@ -29,20 +29,3 @@
   </div>
 </sidebar>
 
-<!-- <script>
-  $(document).ready(function init() {
-    var url = window.location.href;
-    var req = /#([^\s]+)$/.exec(url);
-
-    if (!Array.isArray(req)) {
-      return false;
-    }
-    var selector = "#" + req.pop();
-    showTag(selector);
-  });
-
-  function showTag(selector) {
-    $(".archive-group").hide();
-    $(selector).show();
-  }
-</script> -->

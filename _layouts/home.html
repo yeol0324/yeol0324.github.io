@@ -18,7 +18,7 @@ layout: default
           <h3>{{ post.title | escape }}</h3>
           <div class="post-content">
             <p>
-              {{post.content| markdownify | strip_html | truncate: 280 | escape}}
+              {{post.content| markdownify | strip_html | truncate: 200 | escape}}
             </p>
           </div>
           <div class="tag-list">

@@ -12,7 +12,7 @@ jekyll github blog 커스텀하기 입니다. 지킬 깃헙 블로그 생성하�
 # 디렉토리 구조
 
 먼저 jekyll 디렉토리 구조에 대해 간단히 알아보겠습니다.
-> <a href="{{base_path}}/jekyll/jekyll-use/">jekyll 사용하기</a>
+> <a href="{{base_path}}/etc/jekyll-know/">jekyll 자세히 알아보기</a>
 {% raw %}
 _layouts/
 
@@ -62,7 +62,7 @@ minima 테마가 설치된 경로를 얻었습니다. 이제 해당 경로로 �
     └── minima-social-icons.svg
 
 ```
-각 폴더를 복사해서 제 프로젝트로 가져오겠습니다. 안에 html, scss 를 그대로 두고 커스터마이징하면 쉽게 따라할 수 있습니다.
+각 폴더를 복사해서 제 프로젝트로 가져오겠습니다. 안에 html, scss 를 그대로 두고 커스터마이징하면 쉽게 따라할 수 있습니다. <span class="h-yellow">구조가 바뀌면 적용이 안 되니 그대로 가져오세요!</span>
 
 # home 구성하기
 
@@ -82,7 +82,7 @@ minia default 테마의 home 화면은 포스팅이 최신 날짜 순으로 제�
       {{ post.title | escape }}
       <div class="post-content">
         <p>
-        {{post.content| markdownify | strip_html | truncate: 280 | escape }}
+        {{post.content| markdownify | strip_html | truncate: 200 | escape }}
         </p>
       </div>
       <div class="tag-list">
@@ -101,8 +101,8 @@ minia default 테마의 home 화면은 포스팅이 최신 날짜 순으로 제�
 {% endraw %}
 ```
 
-포스트의 컨텐츠가 렌더링 된 곳을 살펴보기
-{% raw %}{{post.content | markdownify | strip_html | truncate: 280 | escape}}{% endraw %}
+포스트의 컨텐츠가 렌더링 된 곳을 보자면, 
+{% raw %}{{post.content | markdownify | strip_html | truncate: 200 | escape}}{% endraw %}
 - <code>markdownify</code> Markdown 형식의 문자열을 HTML로 변환합니다. <br>
 - <code>strip_html</code> 문자열에서 HTML 태그를 제거합니다.<br>
 - <code>truncate</code> 인수로 전달된 문자 수만큼 문자열을 줄입니다.
@@ -162,8 +162,7 @@ _layout 디렉토리 안에 위치한 html 의 style 은 _layout.scss 에 적용
 
 처음에 테마를 다운 받고 about 페이지가 있었는데요, 저한테 필요한 카테고리 페이지를 추가해보겠습니다.
 프로젝트 최상단에 index.markdown about.markdown 이 있는데요 최상단에 만드는 파일을 읽어 페이지가 되는 구조입니다.
-작성은 md, html 모두 가능합니다.
-저는 categories.html 로 만들어주었어요.
+작성은 md, html 모두 가능합니다. 저는 categories.html 로 만들어주었어요.
 {% raw %}
 ```html
 # categories.html
@@ -197,11 +196,10 @@ title: Category
 
 다음은 태그 모음 추가하기로 돌아오겠습니다.
 {% endraw %}
-
-
-
-
+<br>
+<br>
 ---
 참고
+- <https://jekyllrb.com/tutorials/convert-site-to-jekyll/>
 - <https://jekyllrb.com/docs/structure/>
 - <https://jekyllrb.com/docs/themes/>

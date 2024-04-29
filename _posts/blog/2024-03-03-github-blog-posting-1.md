@@ -1,55 +1,95 @@
 ---
 layout: post
-title: "github blog posting 하기"
+title: 깃헙 블로그 포스팅 방법
+summary: github blog posting 하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
-tags: jekyll blog github-page markdown
+tags: blog github-page markdown
 ---
 
-블로그 생성, 커스텀 포스트를 먼저 쓰고 싶었는데, 설명글을 쓰다보니 markdown으로 표현하기 어려운 점들이 있었습니다. 그래서 markdown을 먼저 공부해 보고, markdown으로 글 쓰기! 와 팁! 들을 먼저 소개하겠습니다.
+깃헙 블로그를 운영하면서 가장 중요한 블로그 포스팅하는 방법을 정리해보겠습니다. 규칙을 지키지 않으면 열심히 작성한 글이 블로그에서 보이지 않는 엄청난﹒﹒﹒ 문제가 발생합니다.
+~~저도 알고 싶지 않았어요. 🥹~~
 
-시작하기에 앞서, 마크다운에 대해 먼저 알아보겠습니다.
+간단한 규칙들이니 한번씩 꼭 확인해봅시다!
 
-> ### What is Markdown?
->
-> Markdown is a lightweight markup language that you can use to add formatting elements to plaintext text documents. Created by John Gruber in 2004, Markdown is now one of the world’s most popular markup languages.
->
-> 마크다운은 일반 텍스트 텍스트 문서에 서식 요소를 추가하는 데 사용할 수 있는 경량 마크업 언어입니다. 2004년 John Gruber 가 만든 Markdown은 현재 세계에서 가장 인기 있는 마크업 언어 중 하나입니다.
+# 폴더 생성하기
+처음 프로젝트를 생성할 때 자동으로 생성이 되었겠지만 한번 더 확인하겠습니다. 프로젝트 최상단에서 <span class="h-yellow">_posts</span> 디렉토리 안에 글을 작성해줘야합니다. 포스트 임시 저장할 곳이 필요하다면<span class="h-yellow">_draft</span> 디렉토리를 생성해서 보관을 할 수 있습니다.
 
-markdown 의 특징
+# 파일명 규칙
+가장 중요한 파일명 규칙입니다. 파일명은 <span class="h-yellow">yyyy-mm-dd-title</span> 로 작성을 해줘야합니다.
+예시 : 2024-01-01-first-post.md
 
-- 일반 텍스트를 입력할 수 있다.
-- html 태그를 사용할 수 있다
-
-공식 문서에 나와 있는 설명입니다. 일반적으로 깃 레파지토리에서 프로젝트 설명을 적을 때 많이 사용을 해보셨을 겁니다. 깃헙에서 레파지토리를 신규로 생성할 때도 readme.md 를 자동으로 생성할 수도 있습니다.
-그래서 마크다운에도 몇가지 규칙이 있습니다.
-
----
-
-웹사이트
-Markdown은 웹용으로 설계되었으므로 웹 사이트 콘텐츠 생성을 위해 특별히 설계된 응용 프로그램이 많이 있다는 것은 놀라운 일이 아닙니다.
-
-Markdown 파일을 사용하여 웹사이트를 만드는 가장 간단한 방법을 찾고 있다면 blot.im을 확인하세요 . Blot에 가입하면 컴퓨터에 Dropbox 폴더가 생성됩니다. Markdown 파일을 폴더에 끌어서 놓기만 하면 됩니다. — 귀하의 웹사이트에 있습니다. 이보다 더 쉬울 수는 없습니다.
-
-HTML, CSS 및 버전 제어에 익숙하다면 Markdown 파일을 가져와 HTML 웹사이트를 구축하는 인기 있는 정적 사이트 생성기인 Jekyll을 확인해 보세요. 이 접근 방식의 한 가지 장점은 GitHub 페이지가 Jekyll로 생성된 웹사이트에 대한 무료 호스팅을 제공한다는 것입니다 . Jekyll이 마음에 들지 않는다면, 사용 가능한 다른 많은 정적 사이트 생성기 중 하나를 선택하세요 .
-
-제일 찾고 싶었던 것은 커스텀을 할 때 jekyll의 문법을 자주 사용해야해서 '{% raw %}{{ page.title }}{% endraw %}' 와 같은 설명을 적고 싶었는데 코드 블럭에 넣어도, 인용에 넣어도 계속 변수로 인식하는 문제였습니다.
-
+# 머릿말 작성하기
+문서의 최상단에는 머릿말(Front Matter)이 들어갑니다. 제목, 날짜, 카테고리 등 다양한 정보를 YAML 형식으로 작성을 합니다. 머리말을 사용하여 페이지에 대한 변수를 설정할 수 있습니다.
 ```
-{{page.title}}
+---
+layout: post
+title: 깃헙 블로그 포스팅 방법
+summary: github blog posting 하기
+date: 2024-03-02 10:06:52 +0900
+categories: blog
+tags: blog github-page markdown
+food: Pizza
+---
+```
+지금 보시는 포스팅의 머릿말입니다.
+- layout : 사용할 레이아웃 _layouts 디렉토리 안에 꼭 포함돼있어야함.
+- title : 문서 제목
+- date : 날짜 YYYY-MM-DD HH:MM:SS +/-TTTT 형식으로 작성
+- categories: 포스터의 카테고리
+- published : true/false 사용하여 글 비공개 설정
+- <span class="h-yellow">food 와 같은 변수를 설정해서 사용할 수도 있습니다.</span>
+
+머릿말 사용 예시
+{% raw %}
+```html
+<!-- post.html -->
+  <header class="post-header">
+    {{page.categories}}
+    <h1 class="post-title p-name" itemprop="name headline">
+      {{ page.title | escape }}
+    </h1>
+    <h3 class="post-summary p-name" itemprop="name headline">
+      {{ page.summary | escape }}
+    </h3>
+    <p class="post-meta">
+      <time
+        class="dt-published"
+        datetime="{{ page.date | date_to_xmlschema }}"
+        itemprop="datePublished"
+      >
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y"
+        -%} 
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.author -%} •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person"
+        ><span class="p-author h-card" itemprop="name"
+          >{{ page.author }}</span
+        ></span
+      >
+      {%- endif -%}
+    </p>
+  </header>
+```
+{% endraw %}
+
+# content 작성
+머릿말 부분 아래부터는 포스트의 컨텐츠 영역입니다! 사용 중인 jekyll은 <span class="h-yellow">HTML</span>과 <span class="h-yellow">Markdown</span>을 지원하는데 각각 규칙에 맞게 작성을 해줍니다. HTML 은 태그를 항상 닫아야하고 Markdown 보다 지킬 것들이 많아 여간 귀찮은 일이 아닙니다. 저는 Markdown 으로 작성하는 것을 추천드립니다.
+> <a href="{{base_path}}/etc/markdown-use/">Markdown 알아보기</a>
+
+작성을 다 했거나 하는 도중 확인을 하고 싶다면 로컬에서 먼저 확인을 해줍니다.
+```bash
+bundle exec jekyll serve
+# 또는 터미널에서 입력
+bundle exec jekyll serve --livereload # 새로고침 없이 livereload
 ```
 
-> {{page.title}}
-
-{{page.title}}
-
-> Jekyll 은 에셋 파일의 모든 Liquid 필터와 태그를 처리합니다
-> 만약 Mustache 를 사용하거나 Liquid 템플릿 문법과 충돌하는 다른 JavaScript 템플릿 언어를 사용하고 있다면, 해당 코드 앞뒤에 {% raw %} 와 {% endraw %} 태그를 사용해야 합니다.
-
-jekyll 사이트에 검색도 없어서 한참 찾았습니다 . . .
+# 업로드 하기
+마지막으로 포스트를 업로드하면 됩니다. 컨트롤 + s 로 저장만 한다고 바로 서버에 올라가는 게 아니죠! 깃헙 페이지 설정에서 main 브랜치에 푸시가 되면 자동으로 페이지 배포가 되도록 설정을 했었는데요, 포스트 글을 다 썻다면 git push 만 해주면 끝입니다.
+[자동 배포 설정]({{base_path}}/blog/jekyll-github-blog-1#자동-배포-설정)
 
 ---
-
 참고
-- <https://www.markdownguide.org/>
-- <https://jekyllrb.com/>
+- <https://jekyllrb-ko.github.io/docs/front-matter/>
+- <https://jekyllrb.com/tutorials/convert-site-to-jekyll/#7-show-posts-on-a-page>
