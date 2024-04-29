@@ -46,6 +46,9 @@ defaults:
       path: ""
     values:
       toc: true
+      sitemap:
+        changefreq: daily
+        priority: 0.8
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
