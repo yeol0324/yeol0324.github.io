@@ -4,7 +4,6 @@ title: "javascript 배열 문자열 중복 값 제거"
 date: 2024-04-30 11:06:52 +0900
 categories: javascript
 tags: javascript array
-published : false
 ---
 
 javascript Array 를 다룰 때 중복 값을 제거해야할 경우가 많습니다. 오늘은 자바스크립트 배열과 문자열 중복 값을 제거하는 다양한 방법을 알아보겠습니다.
