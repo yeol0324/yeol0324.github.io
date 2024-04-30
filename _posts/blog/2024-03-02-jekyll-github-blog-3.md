@@ -59,52 +59,27 @@ sitemap:
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% for post in site.posts %}
-    {% unless post.published == false %}
+  {% unless post.published == false %}
     <url>
       <loc>{{ site.url }}{{ post.url }}</loc>
-      {% if post.sitemap.lastmod %}
-        <lastmod>{{ post.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
-      {% elsif post.date %}
+      {% if post.lastmod == null %}
         <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
       {% else %}
-        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
       {% endif %}
-      {% if post.sitemap.changefreq %}
+
+      {% if post.sitemap.changefreq == null %}
+        <changefreq>weekly</changefreq>
+      {% else %}
         <changefreq>{{ post.sitemap.changefreq }}</changefreq>
-      {% else %}
-        <changefreq>monthly</changefreq>
       {% endif %}
-      {% if post.sitemap.priority %}
+
+      {% if post.sitemap.priority == null %}
+          <priority>0.5</priority>
+      {% else %}
         <priority>{{ post.sitemap.priority }}</priority>
-      {% else %}
-        <priority>0.5</priority>
       {% endif %}
     </url>
-    {% endunless %}
-  {% endfor %}
-  {% for page in site.pages %}
-    {% unless page.sitemap.exclude == "yes" or page.name == "feed.xml" %}
-    <url>
-      <loc>{{ site.url }}{{ page.url | remove: "index.html" }}</loc>
-      {% if page.sitemap.lastmod %}
-        <lastmod>{{ page.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
-      {% elsif page.date %}
-        <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
-      {% else %}
-        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-      {% endif %}
-      {% if page.sitemap.changefreq %}
-        <changefreq>{{ page.sitemap.changefreq }}</changefreq>
-      {% else %}
-        <changefreq>monthly</changefreq>
-      {% endif %}
-      {% if page.sitemap.priority %}
-        <priority>{{ page.sitemap.priority }}</priority>
-      {% else %}
-        <priority>0.3</priority>
-      {% endif %}
-    </url>
-    {% endunless %}
   {% endfor %}
 </urlset>
 ```
@@ -231,7 +206,7 @@ sitemap.xml, robots.txt, feed.xml 작성이 끝났다면 커밋&푸시로 변경
 <https://search.google.com/search-console/welcome> 접속
 ![google_search_console](/assets/images/jekyll0github-blog-301.png)
 
-
+블로그 url을 입력하고 본인 소유의 site 가 맞는지 인증 절차를 한번 거치게 됩니다. 인증 절차를 마친 후 먼저 sitemap 의 위치를 등록해주겠습니다. 왼쪽에 있는 메뉴 바 > Sitemaps 로 들어와서 sitemap 이 있는 주소를 입력해 줍니다. 최상단에 배치해두었으니 {블로그주소}/ 뒤에 sitemap.xml 만 입력해주면 되겠죠?
 
 
 
