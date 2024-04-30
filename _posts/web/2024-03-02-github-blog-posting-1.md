@@ -2,7 +2,7 @@
 layout: post
 title: "브라우저가 css 셀럭터를 해석하는 방법"
 date: 2024-03-02 10:06:52 +0900
-categories: html/css
+categories: web
 tags: css
 published : false
 ---

@@ -23,9 +23,12 @@ SEO는 Search Engine Optimization 의 약자로 검색 엔진 최적화의 약�
 
 ## sitemap 생성
 
-sitemap 에는 바로 앞에서 설명한 것처럼 사이트의 지도라고 볼 수 있습니다. 크롤러들이 컨텐츠를 빠짐없이 크롤링해가기 위해 새로운 컨텐츠가 추가될 때마다 사이트맵에 url 을 등록해야합니다. 
+sitemap 에는 바로 앞에서 설명한 것처럼 사이트의 지도라고 볼 수 있습니다. 크롤러들이 컨텐츠를 빠짐없이 크롤링해가기 위해 새로운 컨텐츠가 추가될 때마다 사이트맵에 하나씩 등록을 해야합니다. 
 
-[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap) 플러그인을 사용해서 생성을 해주겠습니다.
+[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)을 사용하는 방법과, xml을 직접 생성하는 방법이 있습니다.
+
+### jekyll-sitemap 플러그인
+
 먼저 Gemfile 과 _congif.yml 에 사용할 플러그인을 적어주고, 터미널에서 명령어를 입력해 프로젝트에 플러그인을 적용 시켜줍니다.
 
 ```bash
@@ -43,9 +46,71 @@ gem install jekyll-sitemap
 
 _site 폴더 아래에 sitemap.xml 파일이 생성되면 완성입니다! 저는 처음에 실행했을 때에는 생성이 되지 않아서 git push를 해서 한번 빌드&배포 과정을 진행해주었더니 정상 작동이 되었습니다. 배포를 해주었으면, {블로그주소}/sitemap.xml 로 이동해서 sitemap 생성과 적용이 잘 되었는지 확인해줍니다.
 
-This page contains the following errors:
-error on line 2 at column 1: Start tag expected, '<' not found
-Below is a rendering of the page up to the first error.
+### sitemap.xml 작성
+{%raw%}
+```
+---
+layout: null
+sitemap:
+  exclude: 'yes'
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+    {% unless post.published == false %}
+    <url>
+      <loc>{{ site.url }}{{ post.url }}</loc>
+      {% if post.sitemap.lastmod %}
+        <lastmod>{{ post.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+      {% elsif post.date %}
+        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      {% endif %}
+      {% if post.sitemap.changefreq %}
+        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
+      {% else %}
+        <changefreq>monthly</changefreq>
+      {% endif %}
+      {% if post.sitemap.priority %}
+        <priority>{{ post.sitemap.priority }}</priority>
+      {% else %}
+        <priority>0.5</priority>
+      {% endif %}
+    </url>
+    {% endunless %}
+  {% endfor %}
+  {% for page in site.pages %}
+    {% unless page.sitemap.exclude == "yes" or page.name == "feed.xml" %}
+    <url>
+      <loc>{{ site.url }}{{ page.url | remove: "index.html" }}</loc>
+      {% if page.sitemap.lastmod %}
+        <lastmod>{{ page.sitemap.lastmod | date: "%Y-%m-%d" }}</lastmod>
+      {% elsif page.date %}
+        <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
+      {% else %}
+        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+      {% endif %}
+      {% if page.sitemap.changefreq %}
+        <changefreq>{{ page.sitemap.changefreq }}</changefreq>
+      {% else %}
+        <changefreq>monthly</changefreq>
+      {% endif %}
+      {% if page.sitemap.priority %}
+        <priority>{{ page.sitemap.priority }}</priority>
+      {% else %}
+        <priority>0.3</priority>
+      {% endif %}
+    </url>
+    {% endunless %}
+  {% endfor %}
+</urlset>
+```
+{%endraw%}
+
+동일하게 {블로그주소}/sitemap.xml 로 이동해서 sitemap 생성과 적용이 잘 되었는지 확인해줍니다.
 
 ## 머릿말 설정
 
@@ -76,28 +141,52 @@ defaults:
         priority: 0.8
 ```
 여기서 설정한 sitemap 설정을 살펴보겠습니다.
-- <code>changefreq</code> : 스크랩 주기, always | hourly | daily 등이 있습니다.
-- <code>priority</code> : 스크랩 우선순위, 0.0 에서 1.0 사이의 값을 부여합니다.
+- <code>changefreq</code> : 스크랩 주기 always, hourly, daily 등이 있습니다.
+- <code>priority</code> : 스크랩 우선순위 0.0 에서 1.0 사이의 값을 부여합니다.
 
 ## robots.txt 생성
 
-robots.txt는 웹사이트에 웹 크롤러같은 로봇들의 접근을 제어하기 위한 규약이다.
-robots.txt 파일은 크롤러가 액세스할 수 있는 URL을 검색엔진 크롤러에 알려준다.
+robots.txt는 웹사이트에 웹 크롤러같은 로봇들의 접근을 제어하기 위한 규약입니다. 크롤러가 액세스할 수 있는 URL을 검색엔진 크롤러에 알려주거나 허용을 해주는 용도입니다.
 
-프로젝트 루트 디렉토리에 robots.txt 파일을 생성한다
-robots.txt 파일에 아래 코드를 붙여넣는다. 이 때 Sitemap 의 주소는 자신의 블로그 URL로 수정하면 된다.
-
-검색 로봇들이 블로그로 들어왔을 때 지도가 어디있는지 알려주는 용도입니다.
+프로젝트 루트 디렉토리에 robots.txt 파일을 생성하고 아래 코드를 입력합니다. 이 때 Sitemap 의 주소는 자신의 블로그 URL로 수정하면 됩니다.
 
 ```txt
 User-agent: *
 Allow: /
 Sitemap: https://yeol0324.github.io/sitemap.xml
 ```
+- <code>User-agent</code> : 크롤링 규칙이 적용될 크롤러 지정
+- <code>Allow</code> : / 부터 상대 경로로 크롤링을 허용할 경로
+- <code>Disallow</code> : / 부터 상대 경로로 크롤링을 제한할 경로
+- <code>Sitemap</code> : 사이트맵이 위치한 경로의 전체 url
+
+특정 크롤러만 허용을 해줄 경우, User-agent : Googlebot 형식으로 입력을 할 수 있습니다.
+> 구글: Googlebot, 네이버: Yeti, 다음: Daum, 빙: Bingbot 등...
 
 ## feed.xml 작성하기
-RSS는 검색 가능성을 높이기 위해 Daum, Naver 검색엔진에 등록할 때도 사용
-rss 제출용 feed.xml 도 작성을 해줍니다. 동일하게 루트 디렉토리에 생성해줍니다.
+
+RSS는 검색 가능성을 높이기 위해
+Daum, Naver 검색엔진에 등록할 때도 사용할 rss 제출용 feed.xml 도 작성을 해두겠습니다. sitemap과 동일하게 [jekyll-feed](https://github.com/jekyll/jekyll-feed)을 사용하는 방법과, xml을 직접 생성하는 방법이 있습니다. 동일하게 루트 디렉토리에 생성해줍니다.
+
+### 플러그인 사용
+
+```bash
+# Gemfile
+gem 'jekyll-feed'
+
+# _config.yml
+plugins:
+  - jekyll-feed
+
+# 터미널
+bundle
+gem install jekyll-feed
+```
+_site 디렉토리 안에 feed.xml 이 생성되는 것을 확인할 수 있습니다.
+
+### sitemap.xml 작성
+
+{%raw%}
 ```
 ---
 layout: none
@@ -114,7 +203,7 @@ layout: none
     {% for post in site.posts limit:30 %}
       <item>
       <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | strip_html | truncatewords: 200 | xml_escape }}</description>
+        <description>{{ post.content | strip_html | xml_escape }}</description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
@@ -129,7 +218,9 @@ layout: none
   </channel>
 </rss>
 ```
+{%endraw%}
 
+동일하게 {블로그주소}/feed.xml 로 이동해서 feed 생성과 적용이 잘 되었는지 확인해줍니다.
 
 # 검색엔진 등록
 
@@ -137,4 +228,3 @@ sitemap.xml, robots.txt, feed.xml 작성이 끝났다면 커밋&푸시로 변경
 
 https://www.sitemaps.org/ko/protocol.html
 https://www.hahwul.com/2020/10/21/minimize-feeds-in-jekyll/#description-%EA%B8%B8%EC%9D%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0-truncate--truncatewords
-https://yenarue.github.io/tip/2020/04/30/Search-SEO/
