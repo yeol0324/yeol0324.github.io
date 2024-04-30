@@ -7,4 +7,6 @@ tags: web seo FrontEnd
 published : false
 ---
 
+https://seo.tbwakorea.com/blog/seo-guide-2022/
+https://yozm.wishket.com/magazine/detail/1540/
 https://developers.google.com/search/docs/fundamentals/seo-starter-guide?hl=ko
