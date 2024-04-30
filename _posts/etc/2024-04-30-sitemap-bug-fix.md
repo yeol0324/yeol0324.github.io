@@ -9,6 +9,16 @@ tags: jekyll markdown
 
 sitemap 오류 해결하기
 
+```
+사이트맵을 읽을 수 있지만 오류가 있습니다.
+```
+sitemap.xml 에서 url 링크가 전체 링크로 들어있는지 확인해줍니다.
+
+⭕️ https://yeol0324.github.io/etc/sitemap-bug-fix/
+❌ /etc/sitemap-bug-fix/
+
+jekyll을 사용해서 생성을 했다면 _config.yml 에서 url 설정을 꼭! 해줄 것.
+
 ```error
 This page contains the following errors:
 error on line 2 at column 1: Start tag expected, '<' not found
