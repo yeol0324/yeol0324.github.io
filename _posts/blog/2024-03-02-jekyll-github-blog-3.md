@@ -163,7 +163,7 @@ _site 디렉토리 안에 feed.xml 이 생성되는 것을 확인할 수 있습�
 {%raw%}
 ```
 ---
-layout: none
+layout: null
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -177,7 +177,7 @@ layout: none
     {% for post in site.posts limit:30 %}
       <item>
       <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | strip_html | xml_escape }}</description>
+        <description>{{ post.content | strip_html |  xml_escape }}</description>
         <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
         <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
         <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
