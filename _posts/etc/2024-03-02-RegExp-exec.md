@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "정규식 exec"
+title: "정규표현식 (Regex) 정리"
 date: 2024-03-02 10:06:52 +0900
-categories: javascript
-tags: javascript 정규식 RefExp
+categories: etc
+tags: 정규식 RefExp
 published : false
 ---
 

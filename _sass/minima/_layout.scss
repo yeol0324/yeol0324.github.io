@@ -307,6 +307,16 @@
   }
 }
 
+.post-summary {
+  margin-bottom: 2px;
+}
+
+.post-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .post-content {
   margin-bottom: $spacing-unit;
 

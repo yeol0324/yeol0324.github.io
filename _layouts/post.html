@@ -17,6 +17,14 @@ layout: default
     <h3 class="post-summary p-name" itemprop="name headline">
       {{ page.summary | escape }}
     </h3>
+    <div class="post-tag-list">
+      {%- for tag in page.tags -%}
+      {% capture tag_name %}{{tag|slugize}}{% endcapture %}
+        <h5 class="tag-{{tag_name}}">
+          #{{ tag_name }}
+        </h5>
+      {%- endfor -%}
+      </div>
     <p class="post-meta">
       <time
         class="dt-published"

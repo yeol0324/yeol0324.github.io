@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 깃헙 블로그 포스팅 방법
+title: 깃헙 블로그 포스팅 하기
 summary: github blog posting 하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
@@ -24,7 +24,7 @@ tags: blog github-page markdown
 ```
 ---
 layout: post
-title: 깃헙 블로그 포스팅 방법
+title: 깃헙 블로그 포스팅 하기
 summary: github blog posting 하기
 date: 2024-03-02 10:06:52 +0900
 categories: blog
