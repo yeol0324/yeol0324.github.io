@@ -55,9 +55,7 @@ sitemap:
   exclude: 'yes'
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
-        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   {% for post in site.posts %}
   {% unless post.published == false %}
     <url>
@@ -80,6 +78,7 @@ sitemap:
         <priority>{{ post.sitemap.priority }}</priority>
       {% endif %}
     </url>
+    {% endunless %}
   {% endfor %}
 </urlset>
 ```
@@ -199,19 +198,22 @@ layout: none
 
 # 검색엔진 등록
 
-sitemap.xml, robots.txt, feed.xml 작성이 끝났다면 커밋&푸시로 변경된 소스를 반영해줍니다. 이제 각 검색엔진에 등록을 해주겠습니다.
+sitemap.xml, robots.txt, feed.xml 작성이 끝났다면 커밋&푸시로 변경된 소스를 반영해줍니다. 이제 각 검색엔진에 ( 저는 Google, Naver ) 에 등록을 하겠습니다.
 
 ## GOOGLE
-웹마스터도구
-<https://search.google.com/search-console/welcome> 접속
-![google_search_console](/assets/images/jekyll0github-blog-301.png)
+Google Search Console에서 진행을 합니다. [google_search_console](https://search.google.com/search-console/welcome) <br/><br/>
+![google_search_console](/assets/images/jekyll0github-blog-301.png)<br/><br/>
+처음 접속한다면 위의 화면처럼 나오는데요, 먼저 블로그 url을 입력하고 본인 소유의 site 가 맞는지 인증 절차를 한번 거치게 됩니다.
 
-블로그 url을 입력하고 본인 소유의 site 가 맞는지 인증 절차를 한번 거치게 됩니다. 인증 절차를 마친 후 먼저 페이지 색인 생성을 해주겠습니다.
-왼쪽에 있는 메뉴 바 > URL 검사를 클릭, 상단 검색창에 자신의 블로그 URL 을 입력합니다. 검사를 마친후, "URL이 Google에 등록되어 있지 않음" 으로 뜬다면 먼저 색인 생성 요청을 해줍니다. 1~2일 정도 소요되는데요 색인 생성이 완료되면 "URL이 Google에 등록되어 있음" 으로 메시지가 바뀝니다.
+### sitemap 등록
+sitemap 의 위치를 등록해주겠습니다. 왼쪽에 있는 메뉴 바 > Sitemaps 로 들어와서 sitemap 이 있는 주소를 입력해 줍니다. 최상단에 배치해두었으니 {블로그주소}/ 뒤에 sitemap.xml 만 입력해주면 되겠죠? 처음에 입력을 하고 나면 Google에서는 블로그 주소를 모르는 상태로 잘못된 URL 이라는 오류가 나온다고 합니다. 저도 등록 하고 오류가 발생해서 한참 찾아봤는데 이틀정도 기다렸더니 상태가 오류 21개에서 성공 으로 바뀌었습니다! 조금만 참고 기다려 줍니다...
+### 색인 생성
+페이지 색인 생성을 해주겠습니다. 왼쪽에 있는 메뉴 바 > URL 검사를 클릭, 상단 검색창에 자신의 블로그 URL 을 입력합니다. 검사를 마친후, "URL이 Google에 등록되어 있지 않음" 으로 뜬다면 색인 생성 요청을 해줍니다. 1~2일 정도 소요되는데요 색인 생성이 완료되면 "URL이 Google에 등록되어 있음" 으로 메시지가 바뀝니다.
 
-sitemap 의 위치를 등록해주겠습니다. 왼쪽에 있는 메뉴 바 > Sitemaps 로 들어와서 sitemap 이 있는 주소를 입력해 줍니다. 최상단에 배치해두었으니 {블로그주소}/ 뒤에 sitemap.xml 만 입력해주면 되겠죠?
+## Naver
+Naver Search Advisor 에서 진행을 합니다. [naver_search_advisor](https://searchadvisor.naver.com/)
+사용이 처음이라면 웹마스터도구 사용하기로 동의를 먼저 해준 후, 웹마스터 도구 > 사이트 관리 > 사이트 등록 으로 이동합니다.
 
-
-
-https://www.sitemaps.org/ko/protocol.html
-https://www.hahwul.com/2020/10/21/minimize-feeds-in-jekyll/#description-%EA%B8%B8%EC%9D%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0-truncate--truncatewords
+---
+참고
+- <https://www.hahwul.com/2020/10/21/minimize-feeds-in-jekyll/#description-%EA%B8%B8%EC%9D%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0-truncate--truncatewords>
