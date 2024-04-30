@@ -21,13 +21,13 @@ SEO는 Search Engine Optimization 의 약자로 검색 엔진 최적화의 약�
 
 검색엔진에 사이트 등록을 해야하는데 등록하기 전에 먼저 준비할 것들이 있습니다. 크롤링하는 로봇(크롤러)들이 사이트로 들어왔을 때 사이트의 정보, 즉 지도 역할을 하는 <code>sitemap</code>도 필요하고, 검색 엔진의 크롤러들에게 명령을 내리는 robots.txt 등 준비가 필요하니 하나씩 진행해보겠습니다.
 
-## sitemap 생성
+## sitemap.xml
 
 sitemap 에는 바로 앞에서 설명한 것처럼 사이트의 지도라고 볼 수 있습니다. 크롤러들이 컨텐츠를 빠짐없이 크롤링해가기 위해 새로운 컨텐츠가 추가될 때마다 사이트맵에 하나씩 등록을 해야합니다. 
 
 [jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap)을 사용하는 방법과, xml을 직접 생성하는 방법이 있습니다.
 
-### jekyll-sitemap 플러그인
+### jekyll-sitemap
 
 먼저 Gemfile 과 _congif.yml 에 사용할 플러그인을 적어주고, 터미널에서 명령어를 입력해 프로젝트에 플러그인을 적용 시켜줍니다.
 
@@ -46,7 +46,7 @@ gem install jekyll-sitemap
 
 _site 폴더 아래에 sitemap.xml 파일이 생성되면 완성입니다! 저는 처음에 실행했을 때에는 생성이 되지 않아서 git push를 해서 한번 빌드&배포 과정을 진행해주었더니 정상 작동이 되었습니다. 배포를 해주었으면, {블로그주소}/sitemap.xml 로 이동해서 sitemap 생성과 적용이 잘 되었는지 확인해줍니다.
 
-### sitemap.xml 작성
+### 직접 작성
 {%raw%}
 ```
 ---
@@ -163,12 +163,12 @@ Sitemap: https://yeol0324.github.io/sitemap.xml
 특정 크롤러만 허용을 해줄 경우, User-agent : Googlebot 형식으로 입력을 할 수 있습니다.
 > 구글: Googlebot, 네이버: Yeti, 다음: Daum, 빙: Bingbot 등...
 
-## feed.xml 작성하기
+## feed.xml
 
 RSS는 검색 가능성을 높이기 위해
 Daum, Naver 검색엔진에 등록할 때도 사용할 rss 제출용 feed.xml 도 작성을 해두겠습니다. sitemap과 동일하게 [jekyll-feed](https://github.com/jekyll/jekyll-feed)을 사용하는 방법과, xml을 직접 생성하는 방법이 있습니다. 동일하게 루트 디렉토리에 생성해줍니다.
 
-### 플러그인 사용
+### jekyll-feed
 
 ```bash
 # Gemfile
@@ -184,7 +184,7 @@ gem install jekyll-feed
 ```
 _site 디렉토리 안에 feed.xml 이 생성되는 것을 확인할 수 있습니다.
 
-### sitemap.xml 작성
+### 직접 작성
 
 {%raw%}
 ```
@@ -225,6 +225,15 @@ layout: none
 # 검색엔진 등록
 
 sitemap.xml, robots.txt, feed.xml 작성이 끝났다면 커밋&푸시로 변경된 소스를 반영해줍니다. 이제 각 검색엔진에 등록을 해주겠습니다.
+
+## GOOGLE
+웹마스터도구
+<https://search.google.com/search-console/welcome> 접속
+![google_search_console](/assets/images/jekyll0github-blog-301.png)
+
+
+
+
 
 https://www.sitemaps.org/ko/protocol.html
 https://www.hahwul.com/2020/10/21/minimize-feeds-in-jekyll/#description-%EA%B8%B8%EC%9D%B4-%EC%9E%90%EB%A5%B4%EA%B8%B0-truncate--truncatewords
