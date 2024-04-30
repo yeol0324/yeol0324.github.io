@@ -43,6 +43,9 @@ gem install jekyll-sitemap
 
 _site 폴더 아래에 sitemap.xml 파일이 생성되면 완성입니다! 저는 처음에 실행했을 때에는 생성이 되지 않아서 git push를 해서 한번 빌드&배포 과정을 진행해주었더니 정상 작동이 되었습니다. 배포를 해주었으면, {블로그주소}/sitemap.xml 로 이동해서 sitemap 생성과 적용이 잘 되었는지 확인해줍니다.
 
+This page contains the following errors:
+error on line 2 at column 1: Start tag expected, '<' not found
+Below is a rendering of the page up to the first error.
 
 ## 머릿말 설정
 
