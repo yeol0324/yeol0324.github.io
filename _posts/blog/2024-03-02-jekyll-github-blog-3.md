@@ -23,11 +23,9 @@ SEO는 Search Engine Optimization 의 약자로 검색 엔진 최적화의 약�
 
 ## sitemap 생성
 
-sitemap 에는 바로 앞에서 설명한 것처럼 사이트의 지도라고 볼 수 있습니다. 크롤러들이 컨텐츠를 빠짐없이 크롤링해가기 위해 새로운 컨텐츠가 추가될 때마다 사이트맵에 하나씩 등록을 해야합니다. 
+sitemap 에는 바로 앞에서 설명한 것처럼 사이트의 지도라고 볼 수 있습니다. 크롤러들이 컨텐츠를 빠짐없이 크롤링해가기 위해 새로운 컨텐츠가 추가될 때마다 사이트맵에 url 을 등록해야합니다. 
 
-[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap) 플러그인을 사용하는 방법과, xml을 직접 생성하는 방법이 있습니다.
-
-### jekyll-sitemap
+[jekyll-sitemap](https://github.com/jekyll/jekyll-sitemap) 플러그인을 사용해서 생성을 해주겠습니다.
 먼저 Gemfile 과 _congif.yml 에 사용할 플러그인을 적어주고, 터미널에서 명령어를 입력해 프로젝트에 플러그인을 적용 시켜줍니다.
 
 ```bash
@@ -45,38 +43,6 @@ gem install jekyll-sitemap
 
 _site 폴더 아래에 sitemap.xml 파일이 생성되면 완성입니다! 저는 처음에 실행했을 때에는 생성이 되지 않아서 git push를 해서 한번 빌드&배포 과정을 진행해주었더니 정상 작동이 되었습니다. 배포를 해주었으면, {블로그주소}/sitemap.xml 로 이동해서 sitemap 생성과 적용이 잘 되었는지 확인해줍니다.
 
-### sitemap.xml 작성
-```
----
-layout: null
----
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  {% for post in site.posts %}
-    <url>
-      <loc>{{ site.url }}{{ post.url }}</loc>
-      {% if post.lastmod == null %}
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-      {% else %}
-        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-      {% endif %}
-
-      {% if post.sitemap.changefreq == null %}
-        <changefreq>weekly</changefreq>
-      {% else %}
-        <changefreq>{{ post.sitemap.changefreq }}</changefreq>
-      {% endif %}
-
-      {% if post.sitemap.priority == null %}
-          <priority>0.5</priority>
-      {% else %}
-        <priority>{{ post.sitemap.priority }}</priority>
-      {% endif %}
-
-    </url>
-  {% endfor %}
-</urlset>
-```
 
 ## 머릿말 설정
 
