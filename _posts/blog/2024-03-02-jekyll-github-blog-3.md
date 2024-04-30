@@ -213,6 +213,12 @@ sitemap 의 위치를 등록해주겠습니다. 왼쪽에 있는 메뉴 바 > Si
 ## Naver
 Naver Search Advisor 에서 진행을 합니다. [naver_search_advisor](https://searchadvisor.naver.com/)
 사용이 처음이라면 웹마스터도구 사용하기로 동의를 먼저 해준 후, 웹마스터 도구 > 사이트 관리 > 사이트 등록 으로 이동합니다.
+사이트 등록에 블로그 URL 을 등록을 해주고 동일하게 본인 소유가 맞는지 인증을 진행합니다.
+
+### sitemap 등록
+사이트 등록 페이지에 등록된 블로그 URL 을 클릭해 관리 페이지에서 진행합니다. 왼쪽에 있는 요청 > 사이트맵 제출에서 google과 동일하게 {블로그주소}/sitemap.xml 을 입력해줍니다.
+
+
 
 ---
 참고
