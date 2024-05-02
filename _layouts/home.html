@@ -17,8 +17,11 @@ layout: default
         <a class="post-link" href="{{ post.url | relative_url }}">
           <h3>{{ post.title | escape }}</h3>
           <div class="post-content">
-            <p>
+            <p class="pc">
               {{post.content| markdownify | strip_html | truncate: 200 | escape}}
+            </p>
+            <p class="mb">
+              {{post.content| markdownify | strip_html | truncate: 50 | escape}}
             </p>
           </div>
           <div class="tag-list">

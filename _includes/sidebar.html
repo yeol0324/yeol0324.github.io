@@ -1,9 +1,14 @@
 <sidebar class="site-sidebar">
   <div class="profile-wrap">
+    <a rel="author" href="{{ "/" | relative_url }}">
     <div class="profile-img">
       <img src="/assets/profile.png" alt="">
     </div>
-    <h1><a rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a></h1>
+    <div>
+      <h1>{{ site.title | escape }}</h1>
+      <p>{{site.description}}</p>
+    </div>
+  </a>
   </div>
   <div class="category-wrap">
     <h2>CATEGORIES</h2>

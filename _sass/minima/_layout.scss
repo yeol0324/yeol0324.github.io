@@ -54,7 +54,9 @@
     border: 1px solid $grey-color-light;
     border-radius: 5px;
     text-align: right;
-
+    // added
+    position: fixed;
+    z-index: 1;
     label[for="nav-trigger"] {
       display: block;
       float: right;
@@ -242,6 +244,7 @@
     position: sticky;
     top: 0;
     margin-left: 0;
+    padding: 8px 0;
     display: flex;
     background: #fff;
     width: 100%;
@@ -249,13 +252,27 @@
     border-bottom: 2px solid #eee;
     .profile-wrap {
       .profile-img {
-        width: 60px;
-        height: 60px;
+        width: 40px;
+        height: 40px;
         border: inset #fee86f 2px;
       }
-      h1 {
-        display: none;
+      a {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        h1 {
+          margin: 0;
+          font-size: 16px;
+        }
+        p {
+          font-size: 12px;
+          margin: 0;
+        }
       }
+    }
+    .category-wrap,
+    .tag-wrap {
+      display: none;
     }
   }
 }
@@ -361,7 +378,7 @@
         display: inline-block;
         margin-bottom: 4px;
         background-color: #fff;
-        line-height: 18px;
+        // line-height: 18px;
         transition: 0.4s;
       }
       &:hover {
@@ -386,6 +403,52 @@
       gap: 8px;
       h5 {
         font-size: 12px;
+      }
+    }
+  }
+  .pc {
+    display: block;
+  }
+  .mb {
+    display: none;
+  }
+  @include media-query($on-layout) {
+    .mb {
+      display: block;
+    }
+    .pc {
+      display: none;
+    }
+    margin-left: 0;
+    list-style: none;
+    > li {
+      border-bottom: 1px solid #ddd;
+      a {
+        color: $text-color;
+        padding: 0;
+        h3 {
+          display: inline-block;
+          margin-bottom: 4px;
+          line-height: 24px;
+          font-size: 20px;
+        }
+      }
+      .post-content {
+        margin: 8px 0;
+        font-size: 16px;
+        p {
+          color: #808080;
+          margin: 0;
+          padding: 0;
+        }
+      }
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        h5 {
+          font-size: 12px;
+        }
       }
     }
   }

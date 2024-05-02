@@ -27,7 +27,7 @@ console.log(uniqueStr); // 'helo'
 
 # filter 이용
 
-<span class="h-yellow">filter()</span>는 주어진 배열에서 조건을 통과한 요소로만 필터링하는 Array 인스턴스의 메서드입니다.
+<span class="h-yellow">filter()</span>는 주어진 배열에서 조건을 통과한 요소로만 필터링하는 Array 인스턴스의 메서드입니다. <b>해당 아이템이 array 안에서의 index (indexOf 는 array 에서 첫번째 index를 반환함)와 같다</b> 는 조건을 주어 중복 데이터를 제거했습니다.
 
 ```javascript
 // 배열 중복값 제거
@@ -37,13 +37,13 @@ console.log(uniqueArr); // [1, 2, 3, 6, 4]
 
 // 문자열의 중복값 제거
 const str = 'hello';
-const uniqueStr = str.split('').filter((el, index, arr) => arr.indexOf(el) === index).join('');
+const uniqueStr = str.split('').filter((st, index, arr) => arr.indexOf(st) === index).join('');
 console.log(uniqueStr); // 'helo'
 ```
 
 # for 활용
 
-다양한 for 문을 활용해서 제거를 해줄 수 있습니다. 빈 array를 생성해두고 forEach를 사용해 includes 로 검사를 해서 중복 아닌 값만 담아주었습니다.
+다양한 <span class="h-yellow">for 문</span>을 활용해서 제거를 해줄 수 있습니다. 빈 array를 생성해두고 forEach를 사용해 includes 로 검사를 해서 중복 아닌 값만 담아주어 중복 데이터를 제거할 수 있습니다.
 ```javascript
 // 배열의 중복값 제거
 const arr = [1,2,3,2,3,6,3,4];
@@ -70,4 +70,4 @@ str.split('').forEach( st =>{
 console.log(uniqueStr); // 'helo'
 ```
 
-다양한 방법이 있는데 상황마다 쓸 수 있는 방법이 모두 다르죠. 해결해야 할 문제에 가장 알맞는 방법을 선택해서 사용하시면 됩니다.
+다양한 방법이 있는데 상황마다 쓸 수 있는 케이스가 모두 다른 것 같습니다. 개발을 하고 문제해결을 하다보면 여러가지 케이스를 많이 알아두는 것이 더 좋고 빠른 해결방법을 찾는 데 많은 도움이 되는 것 같습니다. 상황에 가장 맞는 방법을 선택해서 사용하시면 됩니다.
