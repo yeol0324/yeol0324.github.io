@@ -18,13 +18,16 @@ ECMAScript 2015의 let과 const는 변수를 블록의 상단으로 끌어올리
 
 ```javascript
 console.log(unnamed) // Uncaught ReferenceError: unnamed is not defined
-
+```
+```javascript
 console.log(namevar); // undefined
 var namevar = 'yurim';
-
+```
+```javascript
 console.log(namelet); // ReferenceError: Cannot access 'namelet' before initialization
 let namelet = 'yurim';
-
+```
+```javascript
 console.log(nameconst); // ReferenceError: Cannot access 'nameconst' before initialization
 const nameconst = 'yurim';
 ```
@@ -43,7 +46,8 @@ declaration()
 function declaration (){
     console.log('hello') // hello
 }
-
+```
+```javascript
 expression()
 
 const expression = ()=>{
@@ -62,6 +66,7 @@ var expression = ()=>{
     console.log('hello') // TypeError: expression is not a function
 }
 ```
+
 
 
 정답은 <span class="h-yellow">TypeError</span> 입니다. 함수를 var로 표현하여 자바스크립트에서는 var를 읽고 undefined로 초기화를 한 상태이기 때문에 함수를 실행하려고 하면 함수가 아니라는 에러가 출력되는 것입니다.

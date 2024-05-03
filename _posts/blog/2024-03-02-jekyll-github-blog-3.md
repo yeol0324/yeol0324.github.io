@@ -124,7 +124,7 @@ robots.txt는 웹사이트에 웹 크롤러같은 로봇들의 접근을 제어�
 
 프로젝트 루트 디렉토리에 robots.txt 파일을 생성하고 아래 코드를 입력합니다. 이 때 Sitemap 의 주소는 자신의 블로그 URL로 수정하면 됩니다.
 
-```txt
+```text
 User-agent: *
 Allow: /
 Sitemap: https://yeol0324.github.io/sitemap.xml

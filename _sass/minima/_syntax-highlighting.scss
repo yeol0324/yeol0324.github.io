@@ -1,14 +1,22 @@
 /**
  * Syntax highlighting styles
  */
+code {
+  background: #e3f1ff;
+}
+code {
+  background: #fbfcfd;
+}
 .highlight {
   background: #fff;
   @extend %vertical-rhythm;
 
   .highlighter-rouge & {
-    background: #eef;
+    background: #fbfcfd;
   }
-
+  code {
+    background: #fbfcfd;
+  }
   .c {
     color: #998;
     font-style: italic;
