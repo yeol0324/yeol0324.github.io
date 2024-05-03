@@ -2,10 +2,10 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[markdown]": {
-    "editor.unicodeHighlight.ambiguousCharacters": false,
-    "editor.unicodeHighlight.invisibleCharacters": false,
-    "diffEditor.ignoreTrimWhitespace": false,
-    "editor.wordWrap": "on",
-    "editor.quickSuggestions": true
+    "editor.quickSuggestions": {
+      "comments": "on",
+      "strings": "on",
+      "other": "on"
+    }
   }
 }
