@@ -125,6 +125,7 @@ this 식별자가 바라봐야 할 대상 객체입니다. javascript 의 this �
 
 
 ---
+참고
 - [자바스크립트의 실행 컨텍스트 (execution context)](https://velog.io/@ggong/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EC%8B%A4%ED%96%89-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8-execution-context)
 - [[자바스크립트] variable과 LexicalEnvironment (feat 코어 자바스크립트)](https://overcome-the-limits.tistory.com/m/331)
 - [자바스크립트 동작원리와 ES6 - Fundamentals of JavaScript & ES6](https://brewagebear.github.io/fundamentals-of-javascript/#step-13-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8B%A4%ED%96%89%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8javascript-execution-context)
