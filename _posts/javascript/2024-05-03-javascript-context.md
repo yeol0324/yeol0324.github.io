@@ -111,7 +111,7 @@ function sayHello (){
 ```
 엄청 간단한 위 함수를 예시로 보겠습니다. sayHello라는 함수에서 text 라는 변수를 가지고 있지 않지만 외부에 있는 변수를 참조하여 읽을 수 있게 됩니다. 외부 환경 참조(outer Environment Reference) 과정으로 인해서 스코프 체이닝이 가능한 것입니다. 자바스크립트의 스코프 체이닝에 관해서는 다시 글을 정리해볼 예정입니다.
 
-3. this binding
+## this binding
 
 this 식별자가 바라봐야 할 대상 객체입니다. javascript 의 this 는 많은 것을 포함하고 또 복잡해서 새로운 글로 정리를 해보겠습니다.
 
