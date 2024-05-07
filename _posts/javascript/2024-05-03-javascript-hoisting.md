@@ -20,19 +20,25 @@ ECMAScript 2015의 let과 const는 변수를 블록의 상단으로 끌어올리
 console.log(unnamed) // Uncaught ReferenceError: unnamed is not defined
 ```
 ```javascript
-console.log(namevar); // undefined
-var namevar = 'yurim';
+console.log(name); // undefined
+var name = 'yurim';
 ```
 ```javascript
-console.log(namelet); // ReferenceError: Cannot access 'namelet' before initialization
-let namelet = 'yurim';
+console.log(name); // ReferenceError: Cannot access 'name' before initialization
+let name = 'yurim';
 ```
 ```javascript
-console.log(nameconst); // ReferenceError: Cannot access 'nameconst' before initialization
-const nameconst = 'yurim';
+console.log(name); // ReferenceError: Cannot access 'name' before initialization
+const name = 'yurim';
 ```
+var, let, const 를 각각 선언하기 전에 호출을 해보았습니다. var와 let, const 가 다르게 출력되는 것을 볼 수 있습니다. 자바스크립트 엔진은 실행하기 전 코드를 읽고 식별자와 식별자에 바인딩된 값을 기록해두는 <span class="h-yellow">환경 레코드(Environment Record)</span> 객체에 기록을 하는데, 환경 레코드에 변수가 어떻게 저장되는지 보겠습니다.
 
-위에서 말했듯, let 과 const 도 호이스팅이 발생하지만 초기화가 되지 않아 접근할 수 없다는 오류로, 호이스팅이 있음을 알 수 있습니다. 변수가 선언되기 전에 블록 안에서 변수를 참조하게 되면 ReferenceError를 발생시키게 되는데, 변수는 블록 시작부터 선언이 처리될 때까지 "temporal dead zone"에 위치하게 되기 때문입니다.
+```
+var { name : undefined }
+let { name }
+const { name }
+```
+위에서 말했듯, let 과 const 도 호이스팅이 발생하지만 초기화가 되지 않아 접근할 수 없다는 오류로, 호이스팅이 있음을 알 수 있습니다. 변수가 선언되기 전에 블록 안에서 변수를 참조하게 되면 ReferenceError를 발생시키게 되는데, 변수는 블록 시작부터 선언이 처리될 때까지 "temporal dead zone(일시적 사각지대)"에 위치하게 되기 때문입니다.
 
 
 # 함수의 호이스팅
@@ -41,13 +47,15 @@ const nameconst = 'yurim';
 함수에서는 함수 선언(function declaration)으로는 호이스팅되지만 함수 표현식(function expression)으로는 호이스팅 되지 않습니다.
 
 ```javascript
+// 함수 선언
 declaration()
 
 function declaration (){
     console.log('hello') // hello
 }
 ```
-```javascript
+```Javascript
+// 함수 표현식
 expression()
 
 const expression = ()=>{
@@ -69,7 +77,7 @@ var expression = ()=>{
 
 
 
-정답은 <span class="h-yellow">TypeError</span> 입니다. 함수를 var로 표현하여 자바스크립트에서 함수는 생성이 되었지만 초기화가 되지 않아 undefined 상태이기 때문에 함수를 실행하려고 하면 함수가 아니라는 에러가 출력되는 것입니다.
+정답은 <span class="h-yellow">TypeError</span> 입니다. 함수를 var로 표현하여 자바스크립트에서 함수는 생성이 되었지만 undefined로 초기화가 된 상태이기 때문에 함수를 실행하려고 하면 함수가 아니라는 에러가 출력되는 것입니다.
 
 # 호이스팅 방지하기
 호이스팅이 에러를 발생시키는 것은 아니지만 코드의 가독성이나 유지보수 측면에서 호이스팅이 일어나지 않도록 하는 것이 좋습니다.
