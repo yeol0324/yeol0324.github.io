@@ -207,7 +207,12 @@
   }
   .profile-wrap {
     @include column-flexbox(center, center);
-
+    a:hover {
+      text-decoration: none;
+    }
+    h1 {
+      text-align: center;
+    }
     .profile-img {
       width: 100px;
       height: 100px;
@@ -215,6 +220,7 @@
       border-radius: 100%;
       overflow: hidden;
       pointer-events: none;
+      margin: 0 auto;
       img {
         height: 100%;
         max-width: none;
