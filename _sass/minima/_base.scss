@@ -213,6 +213,36 @@ pre {
     padding-right: 0;
     padding-left: 0;
   }
+  &:not([class]) {
+    border: 0;
+    padding-right: 0;
+    padding-left: 0;
+    background: none;
+    code {
+      @include relative-font-size(0.9375);
+      display: block;
+      border: 1px solid $grey-color-light;
+      border-radius: 3px;
+      background-color: #eef;
+      padding: 8px 12px;
+      overflow-x: auto;
+      &.language-error {
+        color: #da1415;
+        border-color: #da1415;
+        background-color: #fbe8e8;
+      }
+      &.language-warning {
+        color: #efc100;
+        border-color: #efc100;
+        background-color: #fcf9e7;
+      }
+      &.language-info {
+        color: #2d61e5;
+        border-color: #2d61e5;
+        background-color: #ebf0fd;
+      }
+    }
+  }
 }
 
 /**
