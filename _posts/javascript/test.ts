@@ -1,2 +1,4 @@
-const user = localStorage.getItem("user")?.split(" ")[0];
-const storageUser = (localStorage.getItem("user") as string).split(" ")[0];
+type ObjectSetting = {
+  [key: string]: string;
+};
+const names: ObjectSetting = { teoi: "guen" };

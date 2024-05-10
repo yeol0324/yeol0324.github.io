@@ -4,7 +4,7 @@ title: 자바스크립트 호이스팅
 summary: 
 date: 2024-05-03 14:30:24 +09:00
 categories: javascript
-tags: javascript
+tags: javascript deepdive
 ---
 
 # 호이스팅?

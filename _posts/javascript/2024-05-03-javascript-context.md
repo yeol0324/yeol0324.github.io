@@ -4,7 +4,7 @@ title: 자바스크립트의 실행 컨텍스트
 summary: JavaScript Execution Context (실행 컨텍스트) 란?
 date: 2024-05-03 15:48:04 +09:00
 categories: javascript
-tags: javascript
+tags: javascript deepdive
 ---
 
 자바스크립트의 호이스팅, 스코프 체이닝이 왜 발생하는 걸까요? 자바스크립트 엔진의 실행 컨텍스트에 의해 생기는 현상입니다. 항상 헷갈리는 실행 컨텍스트를 정리해보았습니다.
