@@ -11,6 +11,7 @@ tags: jekyll blog github-page
 바로 앞 게시물에서 언급했던 태그 모음을 추가해보겠습니다. categories.html 에 이어서 작성했습니다.
 
 완성 미리 보기 ❗️
+
 ![](/assets/images/2024-03-04-github-blog-custom-2/02.png)
 
 # Tags 불러오기
