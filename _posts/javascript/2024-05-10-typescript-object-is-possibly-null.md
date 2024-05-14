@@ -3,7 +3,8 @@ layout: post
 title: Object is possibly 'null' 해결하기
 summary: typescript non null assertion operator
 date: 2024-05-10 13:39:53 +09:00
-categories: typescript javascript
+categories: javascript
+tags: typescript javascript
 ---
 
 ```error

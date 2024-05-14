@@ -67,7 +67,7 @@ minima 테마가 설치된 경로를 얻었습니다. 이제 해당 경로로 �
 # home 구성하기
 
 minia default 테마의 home 화면은 포스팅이 최신 날짜 순으로 제목이 쭉 나열이 되어있는 곳을 먼저 바꿔보겠습니다.
-제목만 나왔을 떄는 너무 허전한 느낌이라서 제목 아래에 컨텐츠 내용이 미리보기 형식으로 보이고 아래 태그들이 달려있는 모양으로 구성을 했습니다.
+제목만 나왔을 때는 너무 허전한 느낌이라서 제목 아래에 컨텐츠 내용이 미리보기 형식으로 보이고 아래 태그들이 달려있는 모양으로 구성을 했습니다.
 
 먼저 _layouts/home.html 에서 post-list 안에 날짜 별로 묶여있는 부분을 지워주고 content와 태그들을 추가해주었습니다.
 ```html
@@ -190,7 +190,7 @@ title: Category
   {% endfor %}
 </div>
 ```
-상단에 <span class="h-yellow">permalink: /categories/</span> 라고 작성을 했기떄문에 
+상단에 <span class="h-yellow">permalink: /categories/</span> 라고 작성을 했기때문에 
 {{base_path}}/categories/ 로 접속해보면 카테고리 별로 카테고리의 글을 한눈에 확인할 수 있는 페이지가 생겼습니다!
 카테고리별이 아닌 태그모음도 추가하고 싶어지는데...
 

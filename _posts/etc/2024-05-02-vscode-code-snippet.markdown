@@ -24,7 +24,7 @@ vscode에서는 일부 지원하는 것들이 있는데, 예를들면 html 파�
 Code > preferences > Congifure User Snippets 클릭 또는 cmd + shift + p 단축키를 사용하여 Configure User Snippets 을 검색 해줍니다.
 그리고 사용할 언어를 선택해주면 되는데, 저는 블로그 머릿말 템플릿을 만들 거기 때문에 markdown을 선택했습니다. 언어를 선택하면 언어.json 파일이 새창으로 뜨는데 여기에서 사용하고 싶은 snippet을 등록해주면 끝 ❗️ 아주 간단하죠.
 <br>
-언어 선택할 떄 최상단에 프로젝트별로 만들기를 선택하면 .vscode 에 저장이 되어 프로젝트에서 공유를 할 수 있습니다. 여러명에서 작업하는 경우에도 필요한 코드를 미리 만들어두기 좋은 것 같습니다.
+언어 선택할 때 최상단에 프로젝트별로 만들기를 선택하면 .vscode 에 저장이 되어 프로젝트에서 공유를 할 수 있습니다. 여러명에서 작업하는 경우에도 필요한 코드를 미리 만들어두기 좋은 것 같습니다.
 
 # snippet 생성
 
@@ -49,7 +49,7 @@ Code > preferences > Congifure User Snippets 클릭 또는 cmd + shift + p 단�
 ```
 
 <br>prefix : snippets를 부를 단어를 써 줍니다.
-<br>body : snippets 가 실행되었을 떄 불러오고 싶은 코드를 vscode snippet 규칙으로 내용을 채워줍니다.
+<br>body : snippets 가 실행되었을 때 불러오고 싶은 코드를 vscode snippet 규칙으로 내용을 채워줍니다.
 <br>description : snippets가 화면에 나왔을 때 설명을 적어줍니다.
 <br>
 <br>

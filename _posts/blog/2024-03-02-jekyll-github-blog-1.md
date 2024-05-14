@@ -51,7 +51,7 @@ git clone https://github.com/${username}/${username}.github.io
 
 저는 vscode를 사용하고 있어서 vscode git 기능을 이용합니다. 코드를 편집하거나 블로그 작성 시에도 코드 편집기가 편하기때문에 편집기 설치를 추천드립니다.
 
-vscode로 진행할 떄
+vscode로 진행할 때
 1. clone Repository
 2. url 입력 후 clone from GitHub
 3. open folder
