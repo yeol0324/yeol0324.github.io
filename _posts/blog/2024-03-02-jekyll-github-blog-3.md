@@ -235,6 +235,7 @@ Naver Search Advisor 에서 진행을 합니다. [naver_search_advisor](https://
 
 각각 등록이 잘 되었는지 확인 한번씩 해보겠습니다.
 ![네이버검색엔진검사결과](/assets/images/jekyll0github-blog-302.png)
+
 짠 ✨
 
 네이버는 간단 체크 기능으로 등록이 제대로 됐는지 확인해볼 수 있습니다.
