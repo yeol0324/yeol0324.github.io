@@ -176,6 +176,12 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1;
+  background: #eee;
+  article {
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 }
 
 .page-heading {
@@ -198,7 +204,6 @@
 .site-sidebar {
   width: 200px;
   top: 100px;
-  padding: 30px 0;
   margin-left: -300px;
   position: fixed;
   border-right: 2px solid #eee;
@@ -229,10 +234,15 @@
     }
   }
   .category-wrap {
-    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
   }
   .tag-wrap {
     margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     ul {
       @include flexbox(start, center);
       flex-wrap: wrap;
@@ -285,6 +295,7 @@
 }
 .post-toc {
   width: 220px;
+  padding: 10px 0;
   margin-right: -300px;
   border-left: 4px solid #fee86f;
   position: sticky;
@@ -292,6 +303,8 @@
   clear: both;
   margin-top: 200px;
   top: 100px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   a {
     color: $light-text-color;
   }
@@ -400,10 +413,13 @@
   margin-left: 0;
   list-style: none;
   > li {
-    border-bottom: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
     a {
       color: $text-color;
-      padding: 20px;
+      padding: 20px 40px;
       h3 {
         display: inline-block;
         margin-bottom: 4px;
