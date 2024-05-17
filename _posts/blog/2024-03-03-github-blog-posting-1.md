@@ -76,7 +76,7 @@ food: Pizza
 
 # content 작성
 머릿말 부분 아래부터는 포스트의 컨텐츠 영역입니다! 사용 중인 jekyll은 <span class="h-yellow">HTML</span>과 <span class="h-yellow">Markdown</span>을 지원하는데 각각 규칙에 맞게 작성을 해줍니다. HTML 은 태그를 항상 닫아야하고 Markdown 보다 지킬 것들이 많아 여간 귀찮은 일이 아닙니다. 저는 Markdown 으로 작성하는 것을 추천드립니다.
-> <a href="{{base_path}}/etc/markdown-use/">Markdown 알아보기</a>
+<!-- > <a href="{{base_path}}/etc/markdown-use/">Markdown 알아보기</a> -->
 
 작성을 다 했거나 하는 도중 확인을 하고 싶다면 로컬에서 먼저 확인을 해줍니다.
 ```bash
