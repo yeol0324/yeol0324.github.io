@@ -3,21 +3,11 @@ layout: category
 permalink: /categories/
 title: Category
 ---
+<div class="category-tag">
+
 <div class="title-wrap">
-  <div class="flex">
-    <h1>TAGS</h1>
-    <div class="tag-wrap">
-      {% for tag in site.tags %}
-      {% capture tag_name %}{{ tag | first | slugize }}{% endcapture %}
-      {% capture tag_size %}{{ tag | last | size }}{% endcapture %}
-      <span  class="{{ tag_name }}" onclick="showList('tag', '{{ tag_name }}')">
-        {{ tag_name }}
-      </span>
-      {% endfor %}
-    </div>
-  </div>
-  <div style="margin-top: 20px;">
-    <h1>CATEGORIES</h1>
+  <div>
+    <h2>CATEGORIES</h2>
     <div class="category-wrap">
       {% for category in site.categories %}
       {% capture category_name %}{{ category | first }}{% endcapture %}
@@ -31,30 +21,43 @@ title: Category
       {% endfor %}
     </div>
   </div>
+  <div style="margin-top: 20px;">
+    <h2>TAGS</h2>
+    <div class="tag-wrap">
+      {% for tag in site.tags %}
+      {% capture tag_name %}{{ tag | first | slugize }}{% endcapture %}
+      {% capture tag_size %}{{ tag | last | size }}{% endcapture %}
+      <span  class="{{ tag_name }}" onclick="showList('tag', '{{ tag_name }}')">
+        {{ tag_name }}
+      </span>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 <div class="post-wrap">
   <div id="category">
     {% for category in site.categories %}
     {% capture category_name %}{{ category | first }}{% endcapture %}
-      <article class="archive-item {{ category_name }}">
+      <div class="archive-item {{ category_name }}">
         <h1>{{ category_name }}</h1>
         {% for post in site.categories[category_name] %}
           <h4><a href="{{ site.baseurl }}{{ post.url }}">{{post.title}}</a></h4>
         {% endfor %}
-      </article>
+      </div>
     {% endfor %}
   </div>
   <div id="tag">
     {% for tag in site.tags %}
       {% capture tag_name %}{{ tag | first | slugize }}{% endcapture %}
-        <article class="archive-item {{ tag_name }}">
+        <div class="archive-item {{ tag_name }}">
           <h1>{{ tag_name }}</h1>
           {% for post in site.tags[tag_name] %}
           <h4><a href="{{ site.baseurl }}{{ post.url }}"> {{ post.title }} </a></h4>
           {% endfor %}
-        </article>
+        </div>
     {% endfor %}
   </div>
+</div>
 </div>
 
 
@@ -76,20 +79,22 @@ title: Category
   checkParam()
 </script> 
 <style lang="scss">
+  .category-tag{display: flex;}
 .post-wrap{
-  margin-top: 60px;
+  display: block;
+  margin: 0;
+  width: 100%;
   .archive-item{
     display: none;
+    h1{
+      margin: 0;
+    }
     &.on{ display: block; }
   }
 }
 .title-wrap{
-  h1{ margin: 0; }
-  .flex{
-    display: flex;
-    gap: 30px;
-    align-items: center;
-  }
+  width: 400px;
+  h2{ margin: 0; }
   .tag-wrap{
     display: flex;
     flex-wrap: wrap;
