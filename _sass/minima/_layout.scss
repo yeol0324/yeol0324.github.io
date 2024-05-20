@@ -203,7 +203,7 @@
 }
 .site-sidebar {
   width: 200px;
-  top: 100px;
+  top: calc($spacing-unit * 1.865 + 30px);
   margin-left: -300px;
   position: fixed;
   border-right: 2px solid #eee;
