@@ -1,55 +1,59 @@
 ---
 layout: default
 ---
-<div class="post-toc e-content" itemprop="articleBody">
-  {% include toc.html html=content %}
-</div>
-<article
-  class="post h-entry"
-  itemscope
-  itemtype="http://schema.org/BlogPosting"
->
-  <header class="post-header">
-    {{page.categories}}
-    <h1 class="post-title p-name" itemprop="name headline">
-      {{ page.title | escape }}
-    </h1>
-    <h3 class="post-summary p-name" itemprop="name headline">
-      {{ page.summary | escape }}
-    </h3>
-    <p class="post-meta">
-      <time
-      class="dt-published"
-      datetime="{{ page.date | date_to_xmlschema }}"
-      itemprop="datePublished"
+<div class="post-wrap">
+
+  <article
+    class="post h-entry box"
+    itemscope
+    itemtype="http://schema.org/BlogPosting"
+  >
+    <header class="post-header">
+      {{page.categories}}
+      <h1 class="post-title p-name" itemprop="name headline">
+        {{ page.title | escape }}
+      </h1>
+      <h3 class="post-summary p-name" itemprop="name headline">
+        {{ page.summary | escape }}
+      </h3>
+      <p class="post-meta">
+        <time
+        class="dt-published"
+        datetime="{{ page.date | date_to_xmlschema }}"
+        itemprop="datePublished"
+        >
+        {%- assign date_format = site.minima.date_format | default: "%Y %b %-d"
+        -%} 
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.author -%} •
+      <span itemprop="author" itemscope itemtype="http://schema.org/Person"
+      ><span class="p-author h-card" itemprop="name"
+      >{{ page.author }}</span
+      ></span
       >
-      {%- assign date_format = site.minima.date_format | default: "%Y %b %-d"
-      -%} 
-      {{ page.date | date: date_format }}
-    </time>
-    {%- if page.author -%} •
-    <span itemprop="author" itemscope itemtype="http://schema.org/Person"
-    ><span class="p-author h-card" itemprop="name"
-    >{{ page.author }}</span
-    ></span
-    >
-    {%- endif -%}
-  </p>
-  <div class="post-tag-list">
-    {%- for tag in page.tags -%}
-    {% capture tag_name %}{{tag|slugize}}{% endcapture %}
-      <h5 class="tag-{{tag_name}}">
-        #{{ tag_name }}
-      </h5>
-    {%- endfor -%}
+      {%- endif -%}
+    </p>
+    <div class="post-tag-list">
+      {%- for tag in page.tags -%}
+      {% capture tag_name %}{{tag|slugize}}{% endcapture %}
+        <h5 class="tag-{{tag_name}}">
+          #{{ tag_name }}
+        </h5>
+      {%- endfor -%}
+      </div>
+    </header>
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
     </div>
-  </header>
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-  {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
-    endif -%}
-    
+    {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
+      endif -%}
+  
     <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
   </article>
+  <div class="post-toc e-content" itemprop="articleBody">
+    {% include toc.html html=content %}
+  </div>
+</div>
+
   {%- include pagination.html -%}

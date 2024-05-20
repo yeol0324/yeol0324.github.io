@@ -1,26 +1,21 @@
 <sidebar class="site-sidebar">
-  <!-- <div class="profile-wrap">
-    <a rel="author" href="{{ "/" | relative_url }}">
-    <div class="profile-img">
-      <img src="/assets/profile.png" alt="">
-    </div>
-    <div>
-      <h1>{{ site.title | escape }}</h1>
-      <p>{{site.description}}</p>
-    </div>
-  </a>
-  <p>{{site.email}}</p>
-  </div> -->
+  <div class="profile-wrap">
+    <img src="/assets/profile.jpeg" alt=""/>
+    <p>{{site.description}}</p>
+    <p>✉️ {{site.email}}</p>
+    <p><a href="https://github.com/{{ site.github_username| cgi_escape | escape }}"><svg class="svg-icon"><use xlink:href="{{ '/assets/minima-social-icons.svg#github' | relative_url }}"></use></svg> <span class="username">{{ site.github_username| escape }}</span></a></p>
+  </div>
   <div class="category-wrap">
-    <h2>CATEGORIES</h2>
+    <h2>☃︎ 카테고리</h2>
     <ul>
     {% for category in site.categories %}
       {% capture category_name %}{{ category | first }}{% endcapture %}
-      <li><a href="{{base_path}}/categories/?category={{category_name}}">{{ category_name }}</a></li>
+      {% capture category_size %}{{ category | last | size }}{% endcapture %}
+      <li>﹒ <a href="{{base_path}}/categories/?category={{category_name}}">{{ category_name }}({{category_size}})</a></li>
       {% endfor %}
     </ul>
   </div>
-  <div class="tag-wrap">
+  <!-- <div class="tag-wrap">
     <h2>TAGS</h2>
     <ul>
       {% for tag in site.tags %}
@@ -32,6 +27,6 @@
       </li>
       {% endfor %}
     </ul>
-  </div>
+  </div> -->
 </sidebar>
 
