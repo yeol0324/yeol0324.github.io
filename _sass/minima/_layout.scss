@@ -294,6 +294,13 @@
 .post-wrap {
   display: flex;
   gap: 20px;
+  .post {
+    width: calc(100% - 80px);
+    max-width: 880px;
+  }
+  @include media-query($content-width) {
+    justify-content: center;
+  }
 }
 .post-toc {
   width: 220px;
@@ -322,7 +329,7 @@
   * {
     list-style: none;
   }
-  @include media-query($on-layout) {
+  @include media-query($content-width) {
     display: none;
   }
 }
