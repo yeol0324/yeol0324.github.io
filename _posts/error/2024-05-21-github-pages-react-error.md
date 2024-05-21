@@ -14,9 +14,21 @@ github pages 호스팅 서비스를 이용하려고 했는데, 리액트로 만�
 
 react-router-dom 때문에 발생하는 문제였습니다.
 
+# basename 추가
 index.html 에서 BrowserRouter 에 basename을 추가해줍니다! 절대로 ❗️ 전체 경로가 아닌 앞에 있는 경로만 적어주시면 됩니다. 전체 경로를 적어주어서 저는 한참 헤맸어요. 😅
 
 ```html
 <!-- https://yeol0324.github.io/Interactive-UX/ 인 경우 -->
 <BrowserRouter basename="Interactive-UX">
+```
+
+# HashRouter 사용
+
+BrowserRouter 대신에 HashRouter를 사용하는 방법도 있습니다. HashRouter를 사용하게되면 Url 뒤에 #이 붙어서 페이지 url 이 생성이 되는데요. BrowserRouter 는 루트 디렉토리가 아닌 경우 새로고침을 할 때 404 에러가 발생하는 문제도 있어서 HashRouter 를 사용했습니다.
+
+실무에서는 서버에서 설정을 해두고 많이 사용합니다.
+```html
+<HashRouter>
+    <App />
+</HashRouter>    
 ```
