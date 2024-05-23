@@ -1,30 +1,38 @@
 ---
 layout: post
-title: three.js 시작하기
-summary: react에서 threeJs를 사용해서 object를 만들어보자! 
+title: Three.js 시작하기
+description: react에서 Three.js를 사용해서 object를 만들어보자! 
 date: 2024-05-22 10:58:31 +09:00
 categories: javascript
 tags: threejs interactive javascript
 ---
 
-threeJs는 여기저기서 얘기도 많이 들리고 이를 통해 만들어진 프로젝트도 눈에 띄었습니다. 회사에서도 AR이 구현이 가능한지 테스트를할 때 잠깐 접해본 적도 있어서, 아 진짜 한번 제대로 사용해보고 싶다 고 생각만 하고 실천을 못했었네요. 이번에 threeJs를 한번 사용해보려고 합니다.
+회사에서도 AR이 구현 테스트를할 때 Three.js를 찍어먹기 해봤습니다. 이곳저곳에서 관심도 많이 보이고, 이를통해 만들어진 웹도 자주 접하게 됐습니다. 저도 계속 관심은 있는 상태로 한번 제대로 사용해보고 싶다는 생각만 하고 실천을 못했었네요. 이번 기회에 Three.js를 한번 사용해보며 공부해보겠습니다.
+
+[Three.js](https://threejs.org/)로 접속을 하면 이 라이브러리를 사용해서 만든 프로젝트들을 볼 수 있는데 너무 이쁘고 신기했습니다. 어떻게 동작이 되는지 알아보고 기술을 익혀서 머리로만 생각하고 있는 프로젝트를 얼른 완성시키고 싶어요. 😳
 
 # threeJs
 
+Three.js는 웹에서 3D 그래픽스를 쉽게 만들 수 있는 자바스크립트 라이브러리입니다. WebGL 기반으로 3D 애니메이션, 모델링, 렌더링 작업을 단순화하여 3D를 쉽게 생성할 수 있습니다. Three.js를 통해서 애니메이션이나 3D 장면이 추가 된 인터랙티브한 웹을 만들 수 있습니다.
 
 # 설치
-저는 리액트 프로젝트에서 시작했습니다. npm 으로 모튤을 설치합니다. typescript를 사용하시는 분이면 three의 type도 설치를 해줘야합니다!
+
+npm 으로 모튤을 설치합니다. typescript를 사용하시는 분이면 three의 type도 설치를 해줍니다!
 ```bash
 npm install three
 npm i --save-dev @types/three # for 타입스크립트
 ```
 
-# Default
+리액트에서 three.js를 더 쉽게 사용할 수 있게 제공하는 <span class="h-yellow">react-three-fiber</span> 라이브러리도 있습니다. 저는 리액트에서 프로젝트를 진행할 예정이지만 Three.js를 더 자세히 알아보기위해서 Three.js를 설치했습니다.
+
+# Init
+
+ThreeJs는 기본적으로 canvas태그에 렌더링되기때문에 canvas태그가 꼭 필요합니다. canvas태그와 함께 씬 생성을 하겠습니다.
 
 ```javascript
 import { useEffect } from "react";
 import * as THREE from "three";
-export default function ThreeStartPage({}) {
+export default function ThreePage({}) {
   const initThree = () => {
     const scene = new THREE.Scene();
   };
@@ -43,7 +51,6 @@ export default function ThreeStartPage({}) {
 3. init 함수 생성
 4. THree Scene 생성
 
-threeJs는 기본적으로 canvas태그에 렌더링되기때문에 html에 canvas태그를 꼭 만들어줘야합니다.
 
 # Scene 만들기
 
@@ -302,3 +309,6 @@ renderer.render(scene, camera);
 ```javascript
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 ```
+
+# objects 추가
+눈사람 주변에 눈이 떠있도록 추가를 좀 해보겠습니다.
