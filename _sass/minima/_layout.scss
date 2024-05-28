@@ -186,6 +186,9 @@
 .home-wrap {
   display: flex;
   gap: 20px;
+  @include media-query($on-layout) {
+    display: block;
+  }
 }
 .page-heading {
   @include relative-font-size(2);
@@ -282,6 +285,30 @@
   }
   @include media-query($content-width) {
     justify-content: center;
+  }
+}
+.post-toc-mb {
+  display: none;
+  * {
+    list-style: none;
+  }
+  @include media-query($content-width) {
+    display: block;
+    width: 100%;
+    margin: 6px 0 20px;
+    background: #efefef;
+    text-align: center;
+    a {
+      color: $light-text-color;
+      text-decoration: underline;
+    }
+    ul {
+      margin: 0;
+      padding: 0 10px;
+      ul {
+        display: none;
+      }
+    }
   }
 }
 .post-toc {

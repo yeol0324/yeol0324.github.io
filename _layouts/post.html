@@ -44,6 +44,10 @@ layout: default
       </div>
     </header>
     <div class="post-content e-content" itemprop="articleBody">
+      <div class="post-toc-mb e-content" itemprop="articleBody">
+        - 목차 -
+        {% include toc.html html=content %}
+      </div>
       {{ content }}
     </div>
     {%- if site.disqus.shortname -%} {%- include disqus_comments.html -%} {%-
