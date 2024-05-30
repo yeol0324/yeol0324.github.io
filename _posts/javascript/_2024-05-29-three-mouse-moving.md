@@ -1,26 +1,27 @@
 ---
 layout: post
-title:  three.js 마우스 무빙
+title: three.js 마우스 무빙
 summary: StereoCamera 사용해서 사용자 인터렉션 마우스 따라 이벤트 구현하기
 date: 2024-05-29 10:29:17 +09:00
 categories: javascript
-tags:  threejs interactive javascript
+tags: threejs interactive javascript
 ---
 
 three.js 세번째 작성 글입니다.
 
 마우스 움직임에 따라 변화가 있는 웹을 접속해본 적이 있으신가요? 단순히 마우스 커서를 따라다니는 이벤트가 아니라, 마우스를 계속 쳐다보는 고양이라든지, 마우스 반대로 도망가는 오브젝트가 있다든지 하는 웹을 만난 적이 있으실 거예요. 저는 그런 기능이 구현된 사이트에 접속하면 단순하지만 재미있고 신기해서 머무는 시간이 길어지는 것을 느꼈습니다. 그래서 한번 구현해보고 싶어졌습니다. 오늘은 이 기능에 대해 알아보고 직접 구현해볼게요!
 
-시작하기 전에 예시를 
+시작하기 전에 예시를
 
 https://threejs.org/examples/#webgl_effects_anaglyph
 
-
 오브젝트에 오브젝트를 고정시키고 싶다!
 위 코드에서는 sunglassObject를 faceObject의 자식으로 추가하여, faceObject가 회전하거나 이동할 때 sunglassObject도 함께 움직이도록 하였습니다. sunglassObject.scene.position.set(0.5, 0, 0.5);로 sunglassObject의 위치를 조정하여 faceObject의 한쪽 벽면에 고정시켰습니다.
-```javascript   
- faceObject.scene.add(sunglassObject.scene);
+
+```javascript
+faceObject.scene.add(sunglassObject.scene);
 ```
+
 이제 faceObject가 마우스 움직임에 따라 회전할 때 sunglassObject도 함께 회전하게 됩니다.
 
 아... 좌표 잡기가 너무 힘들다
@@ -48,30 +49,56 @@ sunglassObject.scene.position.set(0, faceBox.max.y / 2, faceBox.max.z);
 
 faceObject.scene.add(sunglassObject.scene);
 ```
+
 무작위로 object를 생성하고 배치하고 싶은데 이건 마우스를 올릴 때 묶음처럼 한번에 움직이게 할거야. 얼굴이랑 반대로
 
 무작위로 객체를 생성하고 배치하는 방법은 Three.js의 여러 기능을 활용하여 간단하게 구현할 수 있습니다. 다음은 무작위로 생성된 객체들을 그룹으로 묶어 얼굴과 반대로 움직이도록 하는 방법입니다.
 
     TODO: 랜덤 오브젝트 생성
-```javascript
-// 객체 그룹 생성
-const objectGroup = new THREE.Group();
-scene.add(objectGroup);
 
-// 무작위 객체 생성 및 배치
-for (let i = 0; i < 10; i++) {
-    // const obj = await createObject("lightning");
-    const obj = await createObject("sparkle");
-    obj.scene.position.set(
-    Math.random() * 10 - 5,
-    Math.random() * 10 - 5,
-    Math.random() * 10 - 5
-    );
-    // obj.scene.rotateX(90);
-    obj.scene.scale.set(10, 10, 10);
-    objectGroup.add(obj.scene);
-}
+```javascript
+const createAndAddObjects = async (
+  objectGroup: THREE.Group,
+  faceObject: GLTF
+) => {
+  const objectNames = [
+    "sparkle",
+    "snowflake",
+    "diamond",
+    "cherry",
+    "bulb",
+    "swirl",
+    "lightning",
+    "turtle",
+    "fish",
+    "lamp",
+    "idea_lamp",
+  ];
+  const faceBox = new THREE.Box3().setFromObject(faceObject.scene);
+
+  for (const name of objectNames) {
+    const obj = await createObject(name);
+    objectGroup.add(replaceObject(obj, faceBox.max.x).scene);
+  }
+};
 ```
+
+오브젝트 무작위 생성
+
+```javascript
+const replaceObject = (object: GLTF, standardSize: number): GLTF => {
+  const objBox = new THREE.Box3().setFromObject(object.scene);
+  object.scene.position.set(
+    getRandomNumber(5, -8, 8),
+    getRandomNumber(5, -8, 8),
+    Math.floor(Math.random() * (7 + 10) - 10)
+  );
+  const objRatio = standardSize / objBox.max.x / 5;
+  object.scene.scale.set(objRatio, objRatio, objRatio);
+  return object;
+};
+```
+
 이 코드는 다음과 같이 동작합니다:
 
 씬과 카메라, 렌더러를 생성합니다.
@@ -92,5 +119,34 @@ faceObject와 객체 그룹을 생성하고 씬에 추가합니다.
 모든 객체가 겹치지 않는 위치에 배치
 
 intersectsBox 메서드는 Three.js에서 두 개의 경계 상자(Axis-Aligned Bounding Boxes, AABB)가 서로 교차(겹치는)하는지 여부를 검사하는 함수입니다. 이 메서드는 주로 객체 간의 충돌 감지에 사용됩니다. 객체들이 공간 내에서 겹치지 않도록 배치할 때 매우 유용합니다.
- 
-이런 기능도 있지만 랜덤을 뽑을 때부터 얼굴 보다 멀리로 뽑기
+
+이런 기능도 있지만 랜덤을 뽑을 때부터 얼굴 보다 멀리로 뽑기위해 랜덤 함수로 최솟값 최댓값으로 구현함
+
+마지막으로 마우스 이벤트 구현!
+
+```javascript
+const initThree = async () => {
+  //...
+  window.addEventListener("mousemove", (event) =>
+    onMouseMove(event, faceObject, objectGroup)
+  );
+  //...
+};
+const onMouseMove = (
+  event: MouseEvent,
+  faceObject: GLTF,
+  objectGroup: THREE.Group
+) => {
+  const mouse = new THREE.Vector2();
+  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  faceObject.scene.rotation.x = mouse.y / 10;
+  faceObject.scene.rotation.y = mouse.x / 10;
+
+  objectGroup.rotation.x = -mouse.y / 10;
+  objectGroup.rotation.y = -mouse.x / 10;
+};
+```
+
+근데 무작위 랜덤으로 배치했더니 한곳에 몰리는 경향이 있어.. 어떻게 해결할까 하다가 제가 원하는 곳에 배치하는 게 제일 좋을 것 같아서 원하는 곳에 배치를 했습니다!
