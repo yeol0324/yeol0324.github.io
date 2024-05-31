@@ -150,3 +150,212 @@ const onMouseMove = (
 ```
 
 근데 무작위 랜덤으로 배치했더니 한곳에 몰리는 경향이 있어.. 어떻게 해결할까 하다가 제가 원하는 곳에 배치하는 게 제일 좋을 것 같아서 원하는 곳에 배치를 했습니다!
+
+얼굴에 마우스를 hover 하면 선글라스가 스르륵 올라가는 애니메이션을 구현하고 싶다
+
+onMouseMove 함수에서 마우스를 올렸을 때 감지를 해야함
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+3d 공간이기때문에 위치를 찾기가 힘들다 그래서 이거 두개가 필요함
+
+raycaster.setFromCamera(mouse, camera);
+let intersect = raycaster.intersectObjects(scene.children);
+이렇게하면 레이저로 감지 가능
+intersect.forEach((obj) => {
+console.log(obj)
+});
+로 마우스에 닿는 물체가 어떤 건지 확인해볼 수 있음
+근데 내가 불러온 얼굴, 선글라스 물체인지 알 수가 없음 각각 분리돼서 감지됨
+const setupFaceObject = (scene: THREE.Scene, faceObject: GLTF) => {
+faceObject.scene.position.set(0, -5, 0);
+faceObject.scene.traverse((child) => {
+if (child instanceof THREE.Mesh) {
+child.userData.isFace = true; // sunglass를 face 그룹에 넣어두었기 때문에 이거 하나로 분별 가능!
+}
+});
+scene.add(faceObject.scene);
+};
+
+mousemove 함수에 sunglasses: GLTF, 파라미터를 추가함
+
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+
+mouse.y = -(event.clientY / window.innerHeight) \* 2 + 1;
+raycaster.setFromCamera(mouse, camera);
+let intersect = raycaster.intersectObjects(scene.children);
+
+intersect.forEach((obj) => {
+if (obj.object.userData.isFace) {
+obj.object.traverse((child) => {
+console.log(child.userData);
+sunglasses.scene.rotation.x += 1;
+});
+}
+});
+
+애니메이션을 구현해볼까? 너무 딱딱하고 마우스가 얼굴 안에서 움직일 때만 됨 ㅠ 아쉽다
+
+# 애니메이션 추가
+
+```javascript
+  let isMouseOverFace = false;
+  let targetY = sunglassObject.scene.position.y;
+
+  renderer.domElement.addEventListener("mousemove", (event) =>
+    onMouseMove(
+      event,
+      faceObject,
+      sunglassObject,
+      objectGroup,
+      raycaster,
+      mouse,
+      camera,
+      scene,
+      isMouseOverFace,
+      (overFace: boolean) => {
+        isMouseOverFace = overFace;
+        targetY = overFace ? 5 : 0;
+      }
+    )
+  );
+
+
+const animate = () => {
+requestAnimationFrame(animate);
+controls.update();
+
+    // 선글라스 위치를 부드럽게 업데이트
+    sunglassObject.scene.position.y +=
+      (targetY - sunglassObject.scene.position.y) * 0.1;
+
+    renderer.render(scene, camera);
+
+};
+
+const onMouseMove = (
+event: MouseEvent,
+faceObject: GLTF,
+sunglasses: GLTF,
+objectGroup: THREE.Group,
+raycaster: THREE.Raycaster,
+mouse: THREE.Vector2,
+camera: THREE.Camera,
+scene: THREE.Scene,
+isMouseOverFace: boolean,
+setMouseOverFace: (overFace: boolean) => void
+) => {
+mouse.x = (event.clientX / window.innerWidth) _ 2 - 1;
+mouse.y = -(event.clientY / window.innerHeight) _ 2 + 1;
+raycaster.setFromCamera(mouse, camera);
+const intersects = raycaster.intersectObjects(scene.children, true);
+
+const isOverFace = intersects.some((obj) => obj.object.userData.isFace);
+if (isOverFace && !isMouseOverFace) {
+setMouseOverFace(true);
+} else if (!isOverFace && isMouseOverFace) {
+setMouseOverFace(false);
+}
+
+faceObject.scene.rotation.x = mouse.y / 10;
+faceObject.scene.rotation.y = mouse.x / 10;
+
+objectGroup.rotation.x = -mouse.y / 10;
+objectGroup.rotation.y = -mouse.x / 10;
+};
+```
+
+가독성이 떨어지는 것 같고 어쩌고 react api 를 사용하여
+useEffect로 초기화 및 정리 로직 관리
+useRef로 DOM 요소 참조
+useState로 상태 관리
+useCallback으로 메모이제이션
+useMemo로 메모이제이션된 값 생성
+Custom Hooks로 반복적인 로직 추출
+
+useState를 사용하여 isMouseOverFace와 sunglassesTargetY 상태를 관리합니다.
+useThreeJS Custom Hook을 사용하여 Three.js 씬을 초기화하고 관리합니다.
+onMouseMove 이벤트 핸들러는 마우스가 얼굴 위에 있을 때와 없을 때를 감지하고, 상태를 업데이트합니다.
+animate 함수는 매 프레임마다 sunglassesTargetY 값을 참조하여 선글라스의 위치를 부드럽게 업데이트합니다.
+이 접근 방식은 React의 상태 관리를 사용하여 코드의 가독성과 유지보수성을 높이며, Three.js와의 통합을 간단하고 효율적으로 처리할 수 있게 해줍니다.
+
+# gsap 사용
+
+npm i gsap
+
+const onMouseMove = (
+event: MouseEvent,
+faceObject: GLTF,
+sunglasses: GLTF,
+objectGroup: THREE.Group,
+raycaster: THREE.Raycaster,
+mouse: THREE.Vector2,
+camera: THREE.Camera,
+scene: THREE.Scene,
+isMouseOverFace: boolean,
+setMouseOverFace: (overFace: boolean) => void
+) => {
+mouse.x = (event.clientX / window.innerWidth) _ 2 - 1;
+mouse.y = -(event.clientY / window.innerHeight) _ 2 + 1;
+raycaster.setFromCamera(mouse, camera);
+const intersects = raycaster.intersectObjects(scene.children, true);
+
+const isOverFace = intersects.some((obj) => obj.object.userData.isFace);
+if (isOverFace && !isMouseOverFace) {
+// 마우스가 얼굴 위로 들어왔을 때
+gsap.to(sunglasses.scene.position, { y: 5, duration: 1 });
+setMouseOverFace(true);
+} else if (!isOverFace && isMouseOverFace) {
+// 마우스가 얼굴 밖으로 나갔을 때
+gsap.to(sunglasses.scene.position, { y: 0, duration: 1 });
+setMouseOverFace(false);
+}
+
+faceObject.scene.rotation.x = mouse.y / 10;
+faceObject.scene.rotation.y = mouse.x / 10;
+
+objectGroup.rotation.x = -mouse.y / 10;
+objectGroup.rotation.y = -mouse.x / 10;
+};
+
+# 갑분 리액트 공부
+
+얼굴 오브젝트에 마우스 오버가 되면 썬글라스 되는 부분을 리액트로 만들어서 어쩌고
+
+```javascript
+const onMouseMove = useCallback(
+  (
+    event: MouseEvent,
+    camera: THREE.Camera,
+    scene: THREE.Scene,
+    raycaster: THREE.Raycaster,
+    mouse: THREE.Vector2,
+    faceObject: GLTF,
+    objectGroup: THREE.Group,
+    sunglassObject: GLTF
+  ) => {
+    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(scene.children, true);
+
+    const isOverFace = intersects.some((obj) => obj.object.userData.isFace);
+    console.log(`isOverFace: ${isOverFace}`);
+
+    // setMouseOverFace(isOverFace);
+
+    faceObject.scene.rotation.x = mouse.y / 10;
+    faceObject.scene.rotation.y = mouse.x / 10;
+
+    objectGroup.rotation.x = -mouse.y / 10;
+    objectGroup.rotation.y = -mouse.x / 10;
+  },
+  []
+);
+```
+
+마우스를 올릴 떄마다 화면이 하얘지는 문제 발생
+
+setMouseOverFace를 주석 처리하면 문제가 해결되는 것으로 보아, 상태 업데이트로 인해 리렌더링이 발생하면서 Three.js 렌더링 로직에 문제가 생기는 것 같습니다. 상태 업데이트와 렌더링 간의 충돌을 방지하기 위해서는 상태 업데이트를 비동기적으로 처리하거나 상태 업데이트 빈도를 줄이는 방법이 필요합니다.
+
+다음은 상태 업데이트를 비동기적으로 처리하고, 상태 업데이트가 과도하게 발생하지 않도록 최적화한 코드입니다:
