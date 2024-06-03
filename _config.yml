@@ -31,7 +31,7 @@ permalink: /:categories/:title/
 theme: minima
 plugins:
   - jekyll-feed
-  # - jekyll-sitemap
+  - jekyll-sitemap
   - jekyll-toc
 
 # Exclude from processing.
