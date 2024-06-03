@@ -8,7 +8,7 @@ tags: jekyll blog github-page seo
 sitemap:
     changefreq : daily
     priority : 0.8
-published : true
+published : false
 ---
 
 Github blog가 이제는 형태를 갖추기 시작해서 미뤄놨던 seo를 드디어 적용하려고 합니다!
