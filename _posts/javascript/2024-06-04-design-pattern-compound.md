@@ -184,8 +184,11 @@ const Field: FC<FieldProps> = ({ name, children }) => {
   });
 };
 ```
-> 여기서! cloneElement를 사용한 이유는 무엇일까요?
-form 안에는 많은 input 태그가 들어있습니다. input의 type만 해도 많은 종류가 있죠. 타입마다 하나씩 컴포넌트를 만들게 된다면... 어디서 사용할지도 모르는 엄청나게 많은 인풋을 생성하게 되겠죠? 또 키값마다 스타일을 줘야한다면, 사용하는 곳에서 <span class="form-key">이름 : </span>과 같은 코드의 중복이 많이 생길 것입니다.
+## cloneElement
+
+여기서! cloneElement를 사용한 이유는 무엇일까요?
+form 안에는 많은 input 태그가 들어있습니다. input의 type만 해도 많은 종류가 있죠. 타입마다 하나씩 컴포넌트를 만들게 된다면... 어디서 사용할지도 모르는 엄청나게 많은 인풋을 생성하게 되겠죠? 또 키값마다 스타일을 줘야한다면,<br>
+사용하는 곳에서 ```<span class="form-key">이름 : </span>```과 같은 코드의 중복이 많이 생길 것입니다.
 React 요소를 복제하여 새로운 props를 추가하거나 기존 props를 덮어씌울 수 있게 해주는 함수인 React.cloneElement를 사용하여 전달받은 props로 생성을 해줍니다.
 
 ```javascript
