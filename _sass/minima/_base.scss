@@ -1,22 +1,7 @@
 /**
  * Reset some basic elements
  */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-hr,
-dl,
-dd,
-ol,
-ul,
-figure {
+body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,dl,dd,ol,ul,figure {
   margin: 0;
   padding: 0;
 }
@@ -38,51 +23,11 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  // grid-template-areas:
-  //   "sidebar header header"
-  //   "sidebar main   main  "
-  //   "sidebar main   main  "
-  //   "sidebar footer footer";
-  // grid-template-rows: 70px 1fr 500px;
-  // grid-template-columns: 280px 2fr 1fr;
-  // @include media-query($on-palm) {
-  //   grid-template-areas:
-  //     "header header"
-  //     "main   main  "
-  //     "main   main  "
-  //     "footer footer";
-  //   grid-template-rows: 70px 1fr 500px;
-  // }
-}
-.site-header {
-  grid-area: header;
-}
-.site-sidebar {
-  grid-area: sidebar;
-}
-.site-footer {
-  grid-area: footer;
-}
-.page-content {
-  grid-area: main;
 }
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-ul,
-ol,
-dl,
-figure,
-%vertical-rhythm {
+h1,h2,h3,h4,h5,h6,p,blockquote,pre,ul,ol,dl,figure,%vertical-rhythm {
   margin-bottom: $spacing-unit / 2;
 }
 
@@ -100,15 +45,6 @@ img {
   max-width: 100%;
   vertical-align: middle;
 }
-
-// /**
-//  * Codes
-//  */
-// code:not([class]) {
-//   max-width: 100%;
-//   vertical-align: middle;
-//   background-color: rgb(155, 155, 155);
-// }
 
 /**
  * Figures
@@ -139,12 +75,7 @@ li {
 /**
  * Headings
  */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
   font-weight: $base-font-weight;
 }
 
