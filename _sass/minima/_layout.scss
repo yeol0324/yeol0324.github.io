@@ -282,6 +282,10 @@
   .post {
     width: calc(100% - 80px);
     max-width: 880px;
+    img {
+      margin: 0 auto;
+      display: block;
+    }
   }
   @include media-query($content-width) {
     justify-content: center;

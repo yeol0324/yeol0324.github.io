@@ -3,7 +3,7 @@ layout: post
 title: 웹뷰 동영상 재생 오류 해결
 summary: 
 date: 2024-05-13 10:40:04 +09:00
-categories: web
+categories: error
 tags: webview android
 ---
 
