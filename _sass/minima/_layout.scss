@@ -598,3 +598,30 @@
     }
   }
 }
+/*
+* About Page
+*/
+
+.page-about {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.page-about > iframe {
+  width: 400px;
+  height: 400px;
+  flex-shrink: 0;
+}
+.page-about .about-wrap {
+  word-break: keep-all;
+}
+.page-about .about-wrap h2 {
+  font-size: 32px;
+  line-height: 40px;
+}
+.page-about .about-wrap p {
+  font-size: 22px;
+  line-height: 32px;
+
+  letter-spacing: 1.4px;
+}
