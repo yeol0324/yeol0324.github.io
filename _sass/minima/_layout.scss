@@ -294,6 +294,10 @@
       margin: 0 auto;
       display: block;
     }
+    figure {
+      margin: 0 auto;
+      padding: 24px;
+    }
   }
   @include media-query($content-width) {
     justify-content: center;
