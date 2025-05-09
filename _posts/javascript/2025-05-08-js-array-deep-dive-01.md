@@ -7,7 +7,7 @@ categories: javascript
 tags: javascript Array deepdive 프론트엔드
 ---
 
-## 1화: 배열이란 무엇인가 — 자바스크립트 배열 개요
+### 1화: 배열이란 무엇인가 — 자바스크립트 배열 개요
 
 ### “배열을 모르면 JavaScript를 모르는 것이다”
 
@@ -21,7 +21,7 @@ tags: javascript Array deepdive 프론트엔드
 
 ---
 
-# 1. 배열(Array)란 무엇인가?
+## 1. 배열(Array)란 무엇인가?
 
 자바스크립트에서 배열은 **순서가 있는 값(value)의 집합**입니다.  
 각 값은 **0부터 시작하는 정수 인덱스(index)**로 접근할 수 있고, 배열 전체는 하나의 객체(Object)처럼 동작합니다.
@@ -37,7 +37,7 @@ console.log(fruits.length); // 3
 
 ---
 
-# 2. 배열 vs 객체 차이점 알아보기
+## 2. 배열 vs 객체 차이점 알아보기
 
 | 특징 | 배열 (Array) | 객체 (Object) |
 |------|---------------|----------------|
@@ -56,7 +56,7 @@ console.log(Object.keys(obj).length); // 2, 하지만 obj.length는 undefined
 
 ---
 
-# 3. 자바스크립트 배열의 특이한 특징들
+## 3. 자바스크립트 배열의 특이한 특징들
 
 #### 1) 다양한 타입을 동시에 저장 가능
 ```js
@@ -125,7 +125,7 @@ const scores = {
 
 ---
 
-# 4. 유사 배열 객체(Array-like objects)
+## 4. 유사 배열 객체(Array-like objects)
 
 ```js
 const arrayLike = {
@@ -156,7 +156,7 @@ Array.from(divs) 또는 [...divs] 로 배열로 변환할 수 있습니다.
 
 ---
 
-# 5. 배열의 선언과 생성 방식
+## 5. 배열의 선언과 생성 방식
 
 ```js
 const arr1 = [];                 // 가장 일반적인 방식
