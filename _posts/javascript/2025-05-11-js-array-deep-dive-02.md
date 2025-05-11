@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "JavaScript Array Deep Dive (2) — 배열의 컴퓨터 동작 원리와 성능 최적화"
-date: 2024-05-08 14:30:24 +09:00
+date: 2025-05-11 14:30:24 +09:00
 summary: "자바스크립트 배열은 실제 배열이 아니다? V8 엔진과 배열 최적화의 모든 것"
 categories: javascript
 tags: javascript Array deepdive 프론트엔드 V8 최적화
