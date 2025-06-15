@@ -1,8 +1,10 @@
 ---
+layout: post
 title: "JavaScript Array Deep Dive (6) — 검색과 정보 추출 메서드"
-date: 2024-06-14
-description: "includes, indexOf, lastIndexOf, find, findIndex, join, at 등 검색 관련 메서드 총정리"
-tags: ["JavaScript", "Array", "검색", "includes", "indexOf", "find"]
+date: 2025-06-14 22:01:24 +09:00
+summary: "includes, indexOf, lastIndexOf, find, findIndex, join, at 등 검색 관련 메서드 총정리"
+categories: javascript
+tags: javascript Array deepdive 프론트엔드 V8 최적화
 ---
 
  배열에서 원하는 값 찾기
