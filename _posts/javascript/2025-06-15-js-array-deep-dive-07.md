@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "JavaScript Array Deep Dive (6) — 실전 배열 활용"
-date: 2025-06-14 22:01:24 +09:00
+title: "JavaScript Array Deep Dive (7) — 실전 배열 활용"
+date: 2025-06-15 22:01:24 +09:00
 summary: "배열을 기반으로 한 실전 구현! 다차원 배열, 큐/스택, 알고리즘 문제까지"
 categories: javascript
 tags: javascript Array deepdive 프론트엔드 V8 최적화
