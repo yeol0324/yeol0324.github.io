@@ -4,7 +4,7 @@ title: "맥북에서 Jekyll 설치하며 만난 오류들, 이렇게 해결했�
 date: 2025-06-27 14:30:24 +09:00
 summary: "rbenv와 Ruby 맥북으로 고생하기..."
 categories: error
-tags: javascript Array deepdive 프론트엔드 V8 최적화
+tags: error jekyll
 ---
 
 
