@@ -1,9 +1,9 @@
 ---
-layout: error
+layout: post
 title: "맥북에서 Jekyll 설치하며 만난 오류들, 이렇게 해결했다!"
 date: 2025-06-27 14:30:24 +09:00
 summary: "rbenv와 Ruby 맥북으로 고생하기..."
-categories: javascript
+categories: error
 tags: javascript Array deepdive 프론트엔드 V8 최적화
 ---
 
@@ -182,7 +182,7 @@ Jekyll 설치는 간단해 보이지만, Ruby 버전 관리, Gem 의존성, 그�
 3.  **`Gemfile`과 `Gemfile.lock`을 이해하고 적절히 수정하는 것.**
  - 처음부터 이쪽 파일을 봤다면 이렇게까지 오래 걸릴 일은 아니었는데...
 
- 
+
 이 글이 Jekyll 설치 과정에서 어려움을 겪는 다른 분들에게 작은 도움이 되기를 바랍니다. 
 
 ```
