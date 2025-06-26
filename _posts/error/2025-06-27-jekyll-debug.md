@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "맥북에서 Jekyll 설치하며 만난 오류들, 이렇게 해결했다!"
-date: 2025-06-27 14:30:24 +09:00
-summary: "rbenv와 Ruby 맥북으로 고생하기..."
+title: 맥북에서 Jekyll 설치하며 만난 오류들, 이렇게 해결했다!
+date: 2025-06-27 00:00:00 +09:00
+summary: rbenv와 Ruby 맥북으로 고생하기...
 categories: error
 tags: error jekyll
 ---
