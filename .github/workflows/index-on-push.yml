@@ -16,7 +16,7 @@ jobs:
       - name: Set up Ruby # Jekyll은 Ruby를 사용하므로 Ruby 설정
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "2.x" # 사용하는 Ruby 버전에 맞게
+          ruby-version: "3.x" # 사용하는 Ruby 버전에 맞게
           bundler-cache: true # Gemfile.lock에 따라 의존성 캐싱
 
       - name: Install Jekyll dependencies # Jekyll 의존성 설치
