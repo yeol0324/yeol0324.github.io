@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "_posts/**"
-      - "sitemap.xml"
-      - ".github/scripts/index_sitemap.py"
   workflow_dispatch:
 
 jobs:
