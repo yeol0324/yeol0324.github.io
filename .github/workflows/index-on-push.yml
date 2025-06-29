@@ -3,11 +3,12 @@ name: Index Sitemap on Push
 on:
   push:
     branches:
-      - main # main 브랜치에 push
+      - main
     paths:
-      - "sitemap.xml" # sitemap.xml 파일 변경
-      - "_posts/**" # 블로그 게시물 폴더 변경
-      - "index_sitemap.py" # 스크립트 파일 변경
+      - "_posts/**"
+      - "sitemap.xml"
+      - ".github/scripts/index_sitemap.py"
+  workflow_dispatch:
 
 jobs:
   index_urls:
@@ -16,14 +17,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Ruby # Jekyll은 Ruby를 사용하므로 Ruby 설정
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.x" # 사용하는 Ruby 버전에 맞게
+          bundler-cache: true # Gemfile.lock에 따라 의존성 캐싱
+
+      - name: Install Jekyll dependencies # Jekyll 의존성 설치
+        run: bundle install
+
+      - name: Build Jekyll site # Jekyll 사이트 빌드
+        run: bundle exec jekyll build
+
+      - name: Set up Python # 파이썬 스크립트를 위해 Python 설정
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
-      - name: Install dependencies
+
+      - name: Install Python dependencies
         run: pip install google-auth google-auth-oauthlib google-api-python-client requests
 
       - name: Run indexing script
         env:
           GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-        run: python index_sitemap.py
+        # Jekyll의 경우 빌드된 sitemap.xml은 _site/sitemap.xml에 위치
+        run: python .github/scripts/index_sitemap.py

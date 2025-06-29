@@ -17,7 +17,7 @@ if not credentials.valid:
     credentials.refresh(Request())
 
 # sitemap.xml 파일 경로 
-SITEMAP_PATH = './sitemap.xml' 
+SITEMAP_PATH = '_site/sitemap.xml' 
 
 def get_urls_from_sitemap(sitemap_path):
     """sitemap.xml에서 URL 목록 추출"""
