@@ -57,7 +57,7 @@ def send_indexing_request(url, credentials):
         print(f"Error requesting indexing for {url}: {e}")
         if response.status_code == 429: # Too Many Requests
             print("Quota exceeded. Stopping further requests.")
-            return False # 할당량 초과 시 False 반환하여 중단
+            return False # 할당량 초과 시 False 반환후 중단
     return True
 
 if __name__ == '__main__':
