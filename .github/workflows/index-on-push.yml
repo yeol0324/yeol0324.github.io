@@ -1,0 +1,29 @@
+name: Index Sitemap on Push
+
+on:
+  push:
+    branches:
+      - main # main 브랜치에 push
+    paths:
+      - "sitemap.xml" # sitemap.xml 파일 변경
+      - "_posts/**" # 블로그 게시물 폴더 변경
+      - "index_sitemap.py" # 스크립트 파일 변경
+
+jobs:
+  index_urls:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Install dependencies
+        run: pip install google-auth google-auth-oauthlib google-api-python-client requests
+
+      - name: Run indexing script
+        env:
+          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: python index_sitemap.py
