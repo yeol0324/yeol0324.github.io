@@ -3,7 +3,7 @@ layout: post
 title: 회사의 개발 문화와 코드 규칙
 summary: 회사에서는 혼자 일하는 게 아니다
 date: 2024-07-19 12:24:46 +09:00
-categories: daily
+categories: etc
 tags: 
 ---
 

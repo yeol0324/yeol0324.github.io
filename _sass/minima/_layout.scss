@@ -440,7 +440,11 @@
 .post-list {
   margin-left: 0;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   > li {
+    width: 32%;
     background: #fff;
     margin-bottom: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -462,6 +466,15 @@
           text-decoration-thickness: 4px;
         }
         text-decoration: none;
+      }
+    }
+    .post-img {
+      height: 7rem;
+      width: 100%;
+      padding: 1rem 0;
+      text-align: center;
+      img {
+        height: 100%;
       }
     }
     .post-content {

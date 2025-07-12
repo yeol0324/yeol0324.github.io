@@ -2,7 +2,7 @@
 layout: post
 title: aws 데이터베이스 서비스 rds 무료 사용하기
 date: 2024-06-10 11:49:53 +09:00
-categories: project
+categories: etc
 tags: aws project database
 ---
 
