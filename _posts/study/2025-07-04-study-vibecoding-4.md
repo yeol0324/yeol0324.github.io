@@ -3,7 +3,7 @@ layout: post
 title: "AI활용력, 바이브코딩마스터 - (4)"
 date: 2025-07-04 22:01:24 +09:00
 summary: "AI와 협업하기! 바이브 코딩으로 현업 고도화"
-categories: etc
+categories: study
 tags: 바이브코딩 vibecoding ai cursor chatgpt
 ---
 
