@@ -186,6 +186,20 @@
   @include media-query($on-layout) {
     display: block;
   }
+  .text-block {
+    background: black;
+    padding: 5vw;
+    // max-width: 800px;
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(16px, 4vw, 40px);
+    color: #fff;
+  }
+
+  .char {
+    will-change: transform;
+  }
 }
 .page-heading {
   @include relative-font-size(2);
@@ -259,7 +273,7 @@
       .profile-img {
         width: 40px;
         height: 40px;
-        border: inset #fee86f 2px;
+        border: inset #6fd5fe 2px;
       }
       a {
         display: flex;
@@ -323,7 +337,7 @@
 .post-toc {
   width: 220px;
   padding: 10px 0;
-  border-left: 4px solid #fee86f;
+  border-left: 4px solid #6fd5fe;
   position: sticky;
   align-self: start;
   flex-shrink: 0;
@@ -475,7 +489,7 @@
       }
       &:hover {
         h4 {
-          text-decoration-color: #fee86f;
+          text-decoration-color: #6fd5fe;
           text-decoration-thickness: 4px;
         }
         text-decoration: none;

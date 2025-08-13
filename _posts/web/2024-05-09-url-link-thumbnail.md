@@ -43,11 +43,11 @@ tags: web frontend html css
 
 html head 태그에 meta태그를 생성 후 property 에 속성값들을 적고 content에 적어주면 끝입니다.
 ```html
-<meta property="og:title" content="Yaho">
+<meta property="og:title" content="Lumi">
 <meta property="og:type" content="website" />
 <meta property="og:image" content="/assets/thumbnail.jpg">
 <meta property="og:url" content="https://yeol0324.github.io/">
-<meta property="og:description" content="호기심쟁이 개발 블로그">
+<meta property="og:description" content="LUMI's 개발 블로그">
 ```
 
 짠 ✨<br>

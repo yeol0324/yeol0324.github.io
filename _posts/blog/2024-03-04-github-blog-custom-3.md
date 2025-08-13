@@ -45,7 +45,7 @@ content 하단에 toc 를 추가해주었더니 포스트 아래에 toc가 나�
 .post-toc {
   width: 200px;
   margin-right: -300px;
-  border-left: 4px solid #fee86f;
+  border-left: 4px solid #6fd5fe;
   position: sticky;
   float: right;
   clear: both;
@@ -211,7 +211,7 @@ checkParam()
       .profile-img {
         width: 60px;
         height: 60px;
-        border: inset #fee86f 2px;
+        border: inset #6fd5fe 2px;
       }
       h1 {
         display: none;
