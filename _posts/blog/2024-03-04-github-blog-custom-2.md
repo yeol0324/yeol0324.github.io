@@ -151,7 +151,7 @@ const showList = (type, name) => {
       padding: 0px 10px;
       margin: 2px;
       &.on{
-        background: #fee86f;
+        background: #6fd5fe;
       }
     }
   }
@@ -173,7 +173,7 @@ const showList = (type, name) => {
       }
       &.on{
         font-weight: bold;
-        border-bottom: 1px solid #fee86f;
+        border-bottom: 1px solid #6fd5fe;
       }
     }
   }

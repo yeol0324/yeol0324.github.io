@@ -132,7 +132,7 @@ _layout 디렉토리 안에 위치한 html 의 style 은 _layout.scss 에 적용
       }
       &:hover {
         h3 {
-          background-color: #fee86f;
+          background-color: #6fd5fe;
         }
         text-decoration: none;
       }

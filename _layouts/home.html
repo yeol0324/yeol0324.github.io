@@ -1,18 +1,12 @@
 ---
 layout: default
 ---
+
 <div class="home-wrap">
   <div class="home">
-    <div>
-      <h1>Blog</h1>
-      <p>
-       제가 탐구하고 경험한 이야기들을 들려드려요.
-      </p>   
-    </div>
     {%- if page.title -%}
       <h1 class="page-heading">{{ page.title }}</h1>
     {%- endif -%}
-
     {{ content }}
 
     {%- if site.posts.size > 0 -%}
@@ -24,7 +18,7 @@ layout: default
            <div class="post-img">
              <img src="/assets/images/{{post.categories}}.png" alt="{{ post.title }}" />
            </div>
-            <h3>{{ post.title | escape }}</h3>
+            <h4>{{ post.title | escape }}</h4>
             <!-- <div class="post-content">
               <p class="pc">
                 {{post.content| markdownify | strip_html | truncate: 200 | escape}}
