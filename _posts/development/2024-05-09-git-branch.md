@@ -3,7 +3,7 @@ layout: post
 title: 우리가 쓴 깃 전략과 git flow들
 summary: git branch 전략들
 date: 2024-05-09 09:41:33 +09:00
-categories: devops
+categories: development
 tags: git
 ---
 

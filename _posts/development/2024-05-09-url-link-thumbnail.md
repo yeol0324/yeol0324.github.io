@@ -3,7 +3,7 @@ layout: post
 title: url link 공유시 나오는 이미지 추가하기
 summary: 오픈그래프프로토콜(OpenGraphProtocol)과 메타태그(MetaTag)
 date: 2024-05-09 17:09:06 +09:00
-categories: web
+categories: development
 tags: web frontend html css
 ---
 

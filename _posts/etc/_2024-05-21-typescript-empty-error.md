@@ -3,7 +3,7 @@ layout: post
 title: --isolatedModules 오류 해결
 summary: 
 date: 2024-05-21 11:21:16 +09:00
-categories: error
+categories: etc
 tags: error typescript
 ---
 

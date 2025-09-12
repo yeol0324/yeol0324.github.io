@@ -3,7 +3,7 @@ layout: post
 title: "git 자동 push 기능 만들기"
 summary: 
 date: 2024-05-09 17:09:21 +09:00
-categories: devops
+categories: development
 tags: shell git
 ---
 

@@ -302,14 +302,11 @@
 .post-toc {
   width: 240px;
   top: 60px;
-  position: absolute;
-  align-self: start;
-  flex-shrink: 0;
-  background: #fff;
+  position: fixed;
   transition: 0.5s;
   right: -240px;
   will-change: right;
-  padding: 12px 0 12px 12px;
+  padding: 12px 0 12px 24px;
   background: aliceblue;
   border-radius: 12px 0 0 12px;
   &.open {

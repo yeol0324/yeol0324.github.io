@@ -3,7 +3,7 @@ layout: post
 title: "presignedUrl cors 에러 해결"
 summary: 내가 겪은 s3 관련 오류 모음
 date: 2024-05-12 10:06:52 +0900
-categories: devops
+categories: development
 tags: s3 cors presignedUrl
 ---
 

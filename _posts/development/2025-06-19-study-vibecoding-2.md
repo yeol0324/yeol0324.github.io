@@ -3,7 +3,7 @@ layout: post
 title: "AI활용력, 바이브코딩을 파해쳐보자! - (2)"
 date: 2025-06-19 22:01:24 +09:00
 summary: "바이브 코딩 실전, 빌드업 과정 배우기 "
-categories: study
+categories: development
 tags: 바이브코딩 vibecoding ai cursor chatgpt
 ---
 

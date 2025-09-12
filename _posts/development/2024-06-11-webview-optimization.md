@@ -1,9 +1,9 @@
 ---
 layout: post
 title: 웹 최적화를 위한 여정 🛩️
-summary: 웹 성능 최대로 끌어올리는 방법들
+summary: 성능 최대로 끌어올려!
 date: 2024-06-11 12:15:17 +09:00
-categories: web
+categories: development
 tags: frontend web webview android ios
 ---
 

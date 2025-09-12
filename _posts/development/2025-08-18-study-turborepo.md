@@ -3,7 +3,7 @@ layout: post
 title: "Turborepo 정복하기"
 date: 2025-08-18 22:01:24 +09:00
 summary: "Turborepo로 프로젝트 관리와 빌드 속도 최적화"
-categories: study
+categories: development
 tags: turborepo monorepo
 ---
 

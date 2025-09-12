@@ -1,9 +1,9 @@
 ---
 layout: post
-title: 웹개발자가 꼭 알아야 할 CORS 동작 방식과 해결방법
+title: CORS 뭔데 이렇게 자주 만나?
 summary: 
 date: 2024-06-07 10:12:01 +09:00
-categories: web
+categories: development
 tags: cors
 ---
 

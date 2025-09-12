@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "브라우저의 CSS 선택자(Selector) 해석 방법과 성능 향상"
+title: "브라우저의 CSS 선택자 해석 방법과 성능 향상"
 date: 2024-03-06 10:06:52 +0900
-categories: web
+categories: development
 tags: css
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "AI활용력, 바이브코딩을 파해쳐보자! - (3)"
 date: 2025-06-23 22:01:24 +09:00
 summary: "실무에 AI 잘 써먹는 법! 게으르지 말고, 계획하자"
-categories: study
+categories: development
 tags: 바이브코딩 vibecoding ai cursor chatgpt
 ---
 

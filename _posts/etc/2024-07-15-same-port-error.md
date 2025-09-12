@@ -3,7 +3,7 @@ layout: post
 title: 포트 사용 불가 문제
 summary: 죽지도 않고 살아남는 인스턴스 ~0~
 date: 2024-07-15 16:41:07 +09:00
-categories: error
+categories: etc
 tags: error node
 ---
 
