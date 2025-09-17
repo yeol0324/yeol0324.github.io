@@ -131,7 +131,8 @@ import { LikeButton } from '@/features/like-post';
 
 ESLint로 깊은 경로 import 금지와 역방향 의존 금지를 걸어두면 협업할 때 더욱 편해집니다.
 
-```// .eslintrc.js
+```js
+// .eslintrc.js
 module.exports = {
   rules: {
     'no-restricted-imports': [
@@ -151,12 +152,12 @@ module.exports = {
     'import/resolver': { typescript: {} },
   },
 };
-
 ```
 
 경로 별칭도 필수 ✨
 
-```json // tsconfig.json
+```js
+// tsconfig.json
 {
   "compilerOptions": {
     "baseUrl": "src",
