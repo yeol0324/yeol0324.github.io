@@ -7,9 +7,7 @@ categories: development
 tags: fsd frontend Feature-Sliced-Design React_아키텍처_패턴 프로젝트_구조 ddd 도메인_주도_설계
 ---
 
-## FSD 드세요!!!
-
-프로젝트를 할 때마다 폴더 구조가 달라져서 혼란스러웠던 경험, 누구나 있으실 거예요. 명확한 기준이 없다 보니 프로젝트를 새로 맡은 사람은 물론, 만든 본인조차 잠깐 딴 일 했다 돌아오면 “이 파일 어디 있었지…?” 하게 돼요. 저도 그랬습니다. 그러다 FSD(Feature-Sliced Design) 라는 아키텍처를 알게 되었습니다.
+프로젝트를 할 때마다 폴더 구조가 달라져서 혼란스러웠던 경험 누구나 있으실 거예요. 명확한 기준이 없다 보니 프로젝트를 새로 맡은 사람은 물론, 만든 본인조차 잠깐 딴 일 했다 돌아오면 “이 파일 어디 있었지…?” 하게 됩니다. 저도 이런 이유떄문에 항상 폴더 구조를 고민하다가 더 마음에 안 들게 되는 경우도 있고, 더 복잡해지는 경우가 많았던 것 같아요. 좀 더 좋은 방법이 없을까 이것저것 공부하면서 FSD(Feature-Sliced Design) 라는 아키텍처를 알게 되었습니다.
 
 FSD패턴을 공부하면서, 폴더 구조를 그때마다 다르게 기준을 두지 않고 도메인 중심으로 안정적이게 고정하는 방향으로 고민을 하게 되었습니다.
 
@@ -21,15 +19,19 @@ FSD는 레이어(Layer) → 슬라이스(Slice) → 세그먼트(Segment) 3단�
 
 흔히 발생하는 `../../../../` 무한 참조 문제나, 한 폴더에 파일이 몰려서 관리가 어려운 상황을 깔끔하게 정리할 수 있습니다.
 
-## 핵심 철학
+### 핵심 철학
 
-- 도메인 우선: 유저/게시글/코멘트 처럼 **현실의 개념(Entities)**으로 코드를 묶기.
+**도메인 우선**
+<br>유저/게시글/코멘트 처럼 **현실의 개념(Entities)**으로 코드를 묶기.
 
-- 단방향 의존성: shared → entities → features → widgets → pages → app 순으로 참조. 역방향은 금지!
+**단방향 의존성**
+<br>shared → entities → features → widgets → pages → app 순으로 참조. 역방향은 금지!
 
 ### 레이어(Layer)
 
 도메인에 가까울수록 아래, 화면/라우팅에 가까울수록 위
+
+
 * **App**: 전역 설정, Provider, Router, Client 같은 HOC가 위치
 * ~~Processes~~: 여러 페이지가 연결된 플로우(예: 회원가입 1 → 2 → 3 단계), 위젯으로 대체되어 사용하지 않음
 * **Pages**: 브라우저 주소 단위로 분리된 컴포넌트, 라우팅에 따라 나뉘는 페이지
@@ -52,7 +54,7 @@ FSD는 레이어(Layer) → 슬라이스(Slice) → 세그먼트(Segment) 3단�
 
 ## Examples
 
-### 폴더 트리 예시(React + RTK 기준)
+### 리액트 폴더 구조
 ```
 src/
   app/
@@ -105,7 +107,7 @@ import { PostCard } from '@/entities/post';
 import { LikeButton } from '@/features/like-post';
 ```
 
-## 버튼
+### 버튼
 
 버튼의 껍데기(UI), 동작(행동), **내용물(데이터)**를 분리합니다.
 
@@ -117,9 +119,9 @@ import { LikeButton } from '@/features/like-post';
 
 ```tsx
 <Shared.Button
-  onClick={likeFeature.api.like}
+  onClick={feature.api.like}
   icon={shared.icon.fork}
-  data={likeEntity.model.likeCount}
+  data={entity.model.likeCount}
 />
 
 ```
@@ -127,9 +129,9 @@ import { LikeButton } from '@/features/like-post';
 
 이렇게 분리하면 역할과 책임이 명확히 분리되고, 서로 간의 불필요한 임포트를 막음으로써 재사용성은 높이고 의존성은 낮출 수 있습니다.~~(응높결낮 ㅎㅎ)~~
 
-## 의존성 규칙을 코드로도 강제
+## 의존성 규칙 강제하기
 
-ESLint로 깊은 경로 import 금지와 역방향 의존 금지를 걸어두면 협업할 때 더욱 편해집니다.
+ESLint로 깊은 경로 import 금지와 역방향 의존 금지를 걸어두면 협업할 때 실수도 줄고 편해지겠죠!?
 
 ```js
 // .eslintrc.js
@@ -168,27 +170,27 @@ module.exports = {
 }
 ```
 
-### 마이그레이션 
+## 마이그레이션 
 
 FSD의 또 다른 장점은 점증적 적용입니다. 하나씩 순서대로 적용하다보면 더 깊이 이해할 수 있습니다.
 
-경로 별칭(@/*) 부터 잡아서 상대경로를 간소화 하기 →
-shared entities features widgets pages app 순으로 얕게 폴더만 나누기 →
-각 폴더 루트에 index.ts Public API를 만들고, 외부 import를 바꾸기 →
-ESLint 깊은 경로 금지 규칙 추가, CI에서 체크 → api/model/ui/lib 세그먼트를 천천히 분리하며 테스트 진행하기
+경로 별칭(@/*) 부터 잡아서 상대경로를 간소화 하기
+<br>→ shared entities features widgets pages app 순으로 폴더 나누기
+<br>→ 각 폴더 루트에 index.ts Public API를 만들고, 외부 import를 바꾸기
+<br>→ ESLint 깊은 경로 금지 규칙 추가, CI에서 체크
+<br>→ api/model/ui/lib 세그먼트를 천천히 분리하며 테스트 진행하기
 
 처음부터 완벽 분리하겠다는 마음보단 “경로 단절 + Public API” 두 가지만 먼저 적용 후 나머지는 시간에 맡겨봅시다.
 
 
-### 마무리
+## 마무리
 
 폴더 구조는 취향 차이가 크지만, FSD는 “자유”가 아니라 “방향”을 제시한다고 생각합니다.
 
-FSD 공식 문서는 큰 가이드라인만 제시하고, 세부 구현은 팀마다 다릅니다. 결국 실무에서 가장 중요한 건 **팀 합의와 컨벤션 정립**이에요. 두 가지만 지키면 나머지는 팀에 맞게 유연하게 바꿔도 충분합니다.
+FSD 공식 문서는 큰 가이드라인만 제시하고, 세부 구현은 팀마다 다릅니다. 결국 실무에서 가장 중요한 건 **팀 합의와 컨벤션 정립**이라고 생각합니다. 두 가지만 지키면 나머지는 팀에 맞게 유연하게 바꿔도 충분합니다.
 
-1)도메인 중심으로 묶기, 2) 단방향 의존을 지키기.
+- **도메인 중심으로 묶기**<br>
+- **단방향 의존을 지키기**
 
 
-폴더 구조에 매번 고민하셨다면, 이제는 **FSD 드세요.**
-프로젝트가 커질수록 FSD의 장점은 더 빛나게 됩니다.
-
+폴더 구조에 매번 고민하셨다면, 이제 FSD 적용해보세요.
