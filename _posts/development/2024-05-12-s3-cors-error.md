@@ -15,7 +15,6 @@ Failed to load: resource: net::ERR_CERT_COMMON_NAME_INVALID
 
 **소문자, 숫자, 점(.) 및 하이픈(-)만 포함해야 합니다**
 
-
 # CORS 정책 업데이트
 
 AWS bucket CORS 정책을 확인해 줍니다. 발급받은 presignedUrl Put Method를 사용해서 파일을 업로드 하는데 CORS 정책을 추가해주어야합니다. 권한이 필요한 도메인을 AllowedOrigins 에 추가, 필요한 메쏘드들은 AllowedMethods에 추가해줍니다.
