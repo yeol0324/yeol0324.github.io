@@ -210,6 +210,20 @@ code {
     color: #099;
   } // Literal.Number.Integer.Long
 }
+.impact {
+  display: inline-block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 2rem 0 0.5rem 0;
+  color: #355094;
+  &::before {
+    content: "\201C";
+  }
+
+  &::after {
+    content: "\201D";
+  }
+}
 .h {
   &-yellow {
     background-color: #fff5b1;
