@@ -1,14 +1,9 @@
-/**
- * Reset some basic elements
- */
+/**Reset */
 body,h1,h2,h3,h4,h5,h6,p,blockquote,pre,hr,dl,dd,ol,ul,figure {
   margin: 0;
   padding: 0;
 }
 
-/**
- * Basic styling
- */
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height}
     $base-font-family;
@@ -24,31 +19,21 @@ body {
   min-height: 100vh;
   flex-direction: column;
 }
-/**
- * Set `margin-bottom` to maintain vertical rhythm
- */
+
 h1,h2,h3,h4,h5,h6,p,blockquote,pre,ul,ol,dl,figure,%vertical-rhythm {
   margin-bottom: $spacing-unit / 2;
 }
 
-/**
- * `main` element
- */
+
 main {
-  display: block; /* Default value of `display` of `main` element is 'inline' in IE 11. */
+  display: block; 
 }
 
-/**
- * Images
- */
 img {
   max-width: 100%;
   vertical-align: middle;
 }
 
-/**
- * Figures
- */
 figure > img {
   display: block;
 }
@@ -57,9 +42,6 @@ figcaption {
   font-size: $small-font-size;
 }
 
-/**
- * Lists
- */
 ul,
 ol {
   margin-left: $spacing-unit;
@@ -72,16 +54,10 @@ li {
   }
 }
 
-/**
- * Headings
- */
 h1,h2,h3,h4,h5,h6 {
   font-weight: $base-font-weight;
 }
 
-/**
- * Links
- */
 a {
   color: $brand-color;
   text-decoration: none;
@@ -91,7 +67,7 @@ a {
   }
 
   &:hover {
-    // color: $text-color;
+    color: $text-color;
     text-decoration: underline;
   }
 
@@ -174,114 +150,4 @@ pre {
       }
     }
   }
-}
-
-/**
- * Wrapper
- */
-.wrapper {
-  max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-  max-width: calc(#{$content-width} - (#{$spacing-unit} * 2));
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: $spacing-unit;
-  padding-left: $spacing-unit;
-  @extend %clearfix;
-
-  @include media-query($on-laptop) {
-    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-    max-width: calc(#{$content-width} - (#{$spacing-unit}));
-    padding-right: $spacing-unit / 2;
-    padding-left: $spacing-unit / 2;
-  }
-}
-
-/**
- * Clearfix
- */
-%clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/**
- * Icons
- */
-
-.svg-icon {
-  width: 16px;
-  height: 16px;
-  display: inline-block;
-  fill: #{$grey-color};
-  padding-right: 5px;
-  vertical-align: text-top;
-}
-
-.social-media-list {
-  li + li {
-    padding-top: 5px;
-  }
-}
-
-/**
- * Tables
- */
-table {
-  margin-bottom: $spacing-unit;
-  width: 100%;
-  text-align: $table-text-align;
-  color: lighten($text-color, 18%);
-  border-collapse: collapse;
-  border: 1px solid $grey-color-light;
-  tr {
-    &:nth-child(even) {
-      background-color: lighten($grey-color-light, 6%);
-    }
-  }
-  th,
-  td {
-    padding: ($spacing-unit / 3) ($spacing-unit / 2);
-  }
-  th {
-    background-color: lighten($grey-color-light, 3%);
-    border: 1px solid darken($grey-color-light, 4%);
-    border-bottom-color: darken($grey-color-light, 12%);
-  }
-  td {
-    border: 1px solid $grey-color-light;
-  }
-}
-/**
- * Flexes
- */
-$flex-map: (
-  start: flex-start,
-  end: flex-end,
-  between: space-between,
-  around: space-around,
-  stretch: stretch,
-  center: center,
-);
-@function _get-flex-value($key) {
-  @return map-get($flex-map, $key);
-}
-/** dfsf */
-@mixin flexbox($jc: center, $ai: center) {
-  display: flex;
-  justify-content: _get-flex-value($jc);
-  align-items: _get-flex-value($ai);
-}
-
-@mixin inline-flexbox($jc: center, $ai: center) {
-  display: inline-flex;
-  justify-content: _get-flex-value($jc);
-  align-items: _get-flex-value($ai);
-}
-
-@mixin column-flexbox($jc: center, $ai: center) {
-  display: flex;
-  flex-direction: column;
-  justify-content: _get-flex-value($jc);
-  align-items: _get-flex-value($ai);
 }

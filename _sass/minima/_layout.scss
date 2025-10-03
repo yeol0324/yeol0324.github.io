@@ -196,6 +196,7 @@
 
 .post-list-heading {
   @include relative-font-size(1.75);
+  color: $grey-color-dark;
 }
 
 .post-meta {
