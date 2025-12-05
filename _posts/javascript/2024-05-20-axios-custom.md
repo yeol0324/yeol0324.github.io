@@ -133,3 +133,26 @@ const API = {
     ...
 }
 ```
+
+
+
+const CancelToken = axios.CancelToken
+instance.interceptors.request.use(
+	(config: AxiosRequestConfig) => {
+		const key = `${config.url}$${JSON.stringify(config.data || config.params)}`
+		if (sourceRequest[key]) {
+      if (Date.now() - sourceRequest[key] < 2000) { //2초 이내에 같은 요청이 오면 취소 요청
+        const source = CancelToken.source()
+        config.cancelToken = source.token
+        source.cancel()
+      } else {
+        sourceRequest[key] = Date.now() // 중복호출이 아닌 경우 새로운 키 발급
+      }
+    } else {
+      sourceRequest[key] = Date.now() // 중복호출이 아닌 경우 새로운 키 발급
+    }
+	},
+  (error) => {
+    return Promise.reject(error)
+  }
+)
